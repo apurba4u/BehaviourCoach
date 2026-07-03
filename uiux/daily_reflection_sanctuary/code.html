@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DisciplineOS | Daily Reflection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --glass-border: rgba(39, 39, 42, 0.5);
+        }
+        body {
+            background-color: #09090B;
+            color: #e5e1e4;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(39, 39, 42, 0.4);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .aura-glow {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .mood-node.active {
+            color: #8B5CF6;
+            background: rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md selection:bg-aura-violet/30">
+<!-- Background Atmospheric Shader -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full backdrop-blur-xl bg-background/50 z-50 flex items-center justify-between px-margin-mobile h-dock-height w-full z-50">
+<div class="flex items-center gap-unit*2">
+<div class="w-10 h-10 rounded-full overflow-hidden ring-1 ring-white/10 hover:opacity-80 transition-opacity active:scale-90 transition-transform cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A professional and serene headshot of a person with soft lighting, reflecting a calm and focused demeanor. The background is a blurred, dark obsidian office space with subtle violet lighting accents. The overall aesthetic is clean, high-end, and perfectly aligned with a premium digital operating system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi74E_MVvaFoqaa-ue-1GHM2V4lWJ7d48qrFon8oVg3xbr0V5vVf7Roh-kg_T2YqHO7e8cIlKAhcMhwe3oLNbrIqxXMZWyEcIvSqQSb76OdS3DH6vpgkuC-Rwk8sHiwRhbxU2rz9b235aRN7thMxjg5Xv9Yf5CfFVoGxEUICnBiKb1jG2PIjboi62PUMyqlHno4BHj8woKOjbfova338ltqfqmIxEH6WEDGjFgPKQaxAFTdjVZVaz60tsiazRKoBrxos1OrgjUoBY"/>
+</div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold">Reflections</h1>
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity active:scale-90 transition-transform cursor-pointer">settings</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-24 pb-32 max-w-lg mx-auto px-margin-mobile">
+<!-- 1. Current Phase Header -->
+<section class="mb-10 text-center">
+<p class="font-label-mono text-label-mono text-aura-violet mb-2 uppercase tracking-widest">Evening Cycle</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">Good Evening, Alex.<br/><span class="text-on-surface-variant">How was your inner rhythm today?</span></h2>
+</section>
+<!-- 2. Reflection Cards Container -->
+<div class="space-y-6">
+<!-- Evening Reflection (Active/Expanded) -->
+<div class="glass-card rounded-[32px] p-8 aura-glow transition-all duration-500">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Evening Reflection</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant">20:45 PM • Session Active</p>
+</div>
+<div class="p-2 bg-aura-violet/10 rounded-full">
+<span class="material-symbols-outlined text-aura-violet" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+</div>
+</div>
+<!-- Mood Selector -->
+<div class="mb-10">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-4">Emotional State</p>
+<div class="flex justify-between items-center bg-black/20 p-2 rounded-2xl border border-white/5">
+<button class="mood-node w-12 h-12 flex items-center justify-center rounded-xl transition-all hover:bg-white/5 active:scale-95" title="Very Calm">
+<span class="material-symbols-outlined">filter_drama</span>
+</button>
+<button class="mood-node w-12 h-12 flex items-center justify-center rounded-xl transition-all hover:bg-white/5 active:scale-95" title="Stable">
+<span class="material-symbols-outlined">circle</span>
+</button>
+<button class="mood-node active w-12 h-12 flex items-center justify-center rounded-xl transition-all active:scale-95" title="Focused">
+<span class="material-symbols-outlined">temp_preferences_custom</span>
+</button>
+<button class="mood-node w-12 h-12 flex items-center justify-center rounded-xl transition-all hover:bg-white/5 active:scale-95" title="High Energy">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="mood-node w-12 h-12 flex items-center justify-center rounded-xl transition-all hover:bg-white/5 active:scale-95" title="Restless">
+<span class="material-symbols-outlined">air</span>
+</button>
+</div>
+</div>
+<!-- Energy Level -->
+<div class="mb-10">
+<div class="flex justify-between items-end mb-4">
+<p class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">Cognitive Fuel</p>
+<span class="font-label-mono text-label-mono text-aura-violet">65%</span>
+</div>
+<div class="relative h-2 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-aura-violet/50 to-aura-violet rounded-full shadow-[0_0_10px_rgba(139,92,246,0.5)]" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Free Writing Area -->
+<div class="mb-8">
+<textarea class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-lg font-body-lg placeholder:text-on-surface-variant/30 resize-none min-h-[160px]" placeholder="The data is quiet. What remains on your mind?"></textarea>
+</div>
+<!-- Action Bar -->
+<div class="flex items-center justify-between pt-6 border-t border-white/5">
+<button class="flex items-center gap-2 group">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-aura-violet/20 transition-colors">
+<span class="material-symbols-outlined text-aura-violet text-[20px]">mic</span>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant group-hover:text-on-surface transition-colors">Voice Reflection</span>
+</button>
+<button class="px-6 py-2 bg-on-surface text-surface rounded-full font-label-mono text-label-mono hover:bg-primary-container transition-colors active:scale-95">SAVE</button>
+</div>
+</div>
+<!-- Morning Card (Condensed) -->
+<div class="glass-card rounded-[24px] p-6 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-warning-amber/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-warning-amber" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+</div>
+<div>
+<h3 class="font-body-md font-medium text-on-surface">Morning Intention</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant">07:15 AM • Completed</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-success-emerald">check_circle</span>
+</div>
+<!-- AI Summary Preview -->
+<div class="glass-card rounded-[24px] p-6 relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-aura-violet/20 blur-3xl group-hover:bg-aura-violet/30 transition-all"></div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-aura-violet text-sm">psychology</span>
+<h3 class="font-label-mono text-label-mono text-aura-violet uppercase tracking-widest">AI Synthesis</h3>
+</div>
+<p class="font-body-md text-on-surface italic leading-relaxed">
+                    "A day of high cognitive focus followed by a gentle evening wind-down. Your energy signature suggests a preference for deep work in the early afternoon."
+                </p>
+<div class="mt-4 flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-aura-violet"></span>
+<span class="w-1 h-1 rounded-full bg-aura-violet/50"></span>
+<span class="w-1 h-1 rounded-full bg-aura-violet/20"></span>
+</div>
+</div>
+<!-- Reflection History -->
+<section class="pt-8">
+<h4 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest mb-6 text-center">Past Shadows</h4>
+<div class="space-y-4 relative">
+<!-- Vertical Timeline Line -->
+<div class="absolute left-6 top-0 bottom-0 w-px bg-white/10 z-0"></div>
+<!-- History Item 1 -->
+<div class="relative z-10 flex items-center gap-6 group cursor-pointer">
+<div class="w-12 h-12 rounded-full glass-card flex items-center justify-center shrink-0 group-hover:border-aura-violet/50 transition-colors">
+<span class="font-label-mono text-[11px] text-on-surface-variant">MAY 12</span>
+</div>
+<div class="glass-card rounded-2xl p-4 flex-grow opacity-60 group-hover:opacity-100 transition-all">
+<p class="text-body-md text-on-surface truncate">Explored mental barriers regarding the project...</p>
+<div class="flex gap-2 mt-2">
+<span class="material-symbols-outlined text-xs text-aura-violet">sentiment_satisfied</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">article</span>
+</div>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="relative z-10 flex items-center gap-6 group cursor-pointer">
+<div class="w-12 h-12 rounded-full glass-card flex items-center justify-center shrink-0 group-hover:border-aura-violet/50 transition-colors">
+<span class="font-label-mono text-[11px] text-on-surface-variant">MAY 11</span>
+</div>
+<div class="glass-card rounded-2xl p-4 flex-grow opacity-60 group-hover:opacity-100 transition-all">
+<p class="text-body-md text-on-surface truncate">High physical recovery but low focus energy...</p>
+<div class="flex gap-2 mt-2">
+<span class="material-symbols-outlined text-xs text-warning-amber">bedtime</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">graphic_eq</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Navigation Shell -->
+<nav class="fixed bottom-unit*4 left-0 right-0 mx-auto flex justify-around items-center h-dock-height z-50 px-6 fixed bottom-unit*4 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full bg-glass-surface/60 backdrop-blur-3xl border border-white/10 shadow-[0_0_20px_rgba(139,92,246,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-on-surface transition-colors scale-110 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-mono text-label-mono">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-on-surface transition-colors scale-110 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-mono text-label-mono">Coach</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary filter drop-shadow-[0_0_8px_rgba(173,198,255,0.5)] scale-110 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">self_care</span>
+<span class="font-label-mono text-label-mono">Reflections</span>
+</a>
+</nav>
+<script>
+        // Mood Selection Interaction
+        const moodNodes = document.querySelectorAll('.mood-node');
+        moodNodes.forEach(node => {
+            node.addEventListener('click', () => {
+                moodNodes.forEach(n => n.classList.remove('active'));
+                node.classList.add('active');
+            });
+        });
+
+        // Simple typing effect for placeholder awareness
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('focus', () => {
+            textarea.parentElement.classList.add('scale-[1.01]');
+        });
+        textarea.addEventListener('blur', () => {
+            textarea.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+</body></html>

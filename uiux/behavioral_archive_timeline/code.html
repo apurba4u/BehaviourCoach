@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DisciplineOS | Behavioral Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#c4abff",
+                        "on-primary-container": "#00285d",
+                        "on-tertiary-container": "#00311f",
+                        "inverse-primary": "#005ac2",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "error-container": "#93000a",
+                        "success-emerald": "#10B981",
+                        "secondary-container": "#571bc1",
+                        "surface-dim": "#131315",
+                        "on-error-container": "#ffdad6",
+                        "warning-amber": "#F59E0B",
+                        "on-primary": "#002e6a",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary-container": "#00a572",
+                        "primary-container": "#4d8eff",
+                        "background": "#131315",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-background": "#e5e1e4",
+                        "on-primary-fixed": "#001a42",
+                        "secondary-fixed": "#e9ddff",
+                        "on-surface": "#e5e1e4",
+                        "outline-variant": "#424754",
+                        "primary": "#adc6ff",
+                        "surface-container-low": "#1c1b1d",
+                        "inverse-surface": "#e5e1e4",
+                        "recovery-rose": "#FB7185",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container": "#201f22",
+                        "inverse-on-surface": "#313032",
+                        "surface": "#131315",
+                        "on-secondary": "#3c0091",
+                        "primary-fixed-dim": "#adc6ff",
+                        "deep-charcoal": "#18181B",
+                        "outline": "#8c909f",
+                        "surface-tint": "#adc6ff",
+                        "tertiary": "#4edea3",
+                        "secondary": "#d0bcff",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-bright": "#39393b",
+                        "on-tertiary": "#003824",
+                        "surface-container-highest": "#353437",
+                        "surface-variant": "#353437",
+                        "on-tertiary-fixed": "#002113",
+                        "glass-surface": "#27272A",
+                        "on-surface-variant": "#c2c6d6",
+                        "aura-violet": "#8B5CF6",
+                        "error": "#ffb4ab",
+                        "obsidian": "#09090B"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "dock-height": "72px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["hankenGrotesk"],
+                        "body-lg": ["inter"],
+                        "label-mono": ["jetbrainsMono"],
+                        "headline-lg": ["hankenGrotesk"],
+                        "display-lg": ["hankenGrotesk"],
+                        "body-md": ["inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-mono": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #09090B;
+            color: #e5e1e4;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .glass-card {
+            background: rgba(39, 39, 42, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(140, 144, 159, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(173, 198, 255, 0.3);
+            background: rgba(39, 39, 42, 0.5);
+        }
+
+        .aura-glow {
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .h-archive-content {
+            padding-bottom: 120px;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(140, 144, 159, 0.2) 10%, rgba(140, 144, 159, 0.2) 90%, transparent);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-obsidian min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky backdrop-blur-md bg-background/30 flex justify-between items-center px-margin-mobile py-4 z-40">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30 transition-transform hover:scale-105 active:scale-95">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-quality close-up portrait of a professional individual with a focused expression, bathed in soft indigo and teal ambient light that reflects the DisciplineOS brand aesthetic. The background is a dark, out-of-focus high-tech interior, maintaining a minimalist and premium atmosphere with subtle glass reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXmHHJ0CobKUQ0jvFcVps8DQpfzsSZVAsjPzdd1u4jZ3r5zqcEYK2Wt1kizvdHstF1heA4-Q6EqvhxYh2NrjjF7tumLA4bQhv0uE8s2bkBQ8_Wv8cGooUBQ5PBo5ZaAvXXKL7pWzSvC6Zn_Fq-YxUQFaho5pplIg5heJCbR7LEJNYbohjTLUaFFFdwDIFD5iQbSfdLez2mZmobW6Z-76hIjbOZkpWP9kiWrQ_YhEGibXMZJFyfgabW-NBHZechqyEhOY-XLZLQz5E"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-medium text-on-surface tracking-tight">Behavioral Archive</h1>
+</div>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity scale-95 active:scale-90" data-icon="settings">settings</button>
+</header>
+<main class="max-w-2xl mx-auto px-margin-mobile mt-8 h-archive-content space-y-16">
+<!-- Calendar Heatmap Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">4-Week Consistency</h2>
+<span class="font-label-mono text-[10px] text-tertiary">92% Compliance</span>
+</div>
+<div class="glass-card rounded-2xl p-6">
+<div class="grid grid-cols-7 gap-3">
+<!-- Generating a 4x7 grid mockup -->
+<script>
+                        const gridContainer = document.currentScript.parentElement;
+                        const intensities = [0, 0.2, 0.4, 0.6, 0.8, 1, 0.3, 0.9, 0.5, 0.7, 1, 1, 0.4, 0.1, 0.8, 0.9, 1, 0.6, 0.4, 0.9, 1, 1, 1, 0.7, 0.5, 0.9, 1, 1];
+                        intensities.forEach(i => {
+                            const div = document.createElement('div');
+                            div.className = `aspect-square rounded-sm transition-all duration-500`;
+                            div.style.backgroundColor = `rgba(173, 198, 255, ${i * 0.8})`;
+                            if(i > 0.7) div.style.boxShadow = `0 0 12px rgba(173, 198, 255, ${i * 0.3})`;
+                            gridContainer.appendChild(div);
+                        });
+                    </script>
+</div>
+<div class="flex justify-between mt-4 font-label-mono text-[10px] text-on-surface-variant/60">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+</section>
+<!-- Discipline Score Trend (Area Chart) -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">Discipline Score Trend</h2>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary aura-glow"></span>
+<span class="font-label-mono text-label-mono text-primary">7-Day Avg: 84</span>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-6 h-48 relative overflow-hidden">
+<!-- SVG Area Chart -->
+<svg class="absolute bottom-0 left-0 w-full h-32" preserveaspectratio="none" viewbox="0 0 400 100">
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgba(173, 198, 255, 0.3);stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgba(173, 198, 255, 0);stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<path d="M0,80 Q50,40 100,60 T200,30 T300,50 T400,20 L400,100 L0,100 Z" fill="url(#chartGradient)"></path>
+<path d="M0,80 Q50,40 100,60 T200,30 T300,50 T400,20" fill="none" stroke="#adc6ff" stroke-width="2"></path>
+</svg>
+<div class="absolute bottom-4 left-6 right-6 flex justify-between font-label-mono text-[10px] text-on-surface-variant/40">
+<span>12 May</span>
+<span>14 May</span>
+<span>16 May</span>
+<span>Today</span>
+</div>
+</div>
+</section>
+<!-- AI Coach Insight Card -->
+<section>
+<div class="glass-card rounded-3xl p-8 relative overflow-hidden border-primary/20">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="flex items-start gap-5 relative z-10">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-xl text-on-surface mb-2">Evening resistance is decreasing</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            Your biometric alignment during the 8:00 PM - 10:00 PM window has improved by 14% this week. This suggests your new wind-down protocol is successfully bypassing previous dopamine-seeking loops.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Focus vs Distraction Bar Chart -->
+<section>
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest mb-4">Focus vs. Distraction</h2>
+<div class="glass-card rounded-2xl p-6 space-y-6">
+<div class="space-y-3">
+<div class="flex justify-between font-label-mono text-[11px]">
+<span class="text-on-surface">Morning (6AM - 12PM)</span>
+<span class="text-tertiary">92% Intentional</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-tertiary shadow-[0_0_8px_rgba(78,222,163,0.4)]" style="width: 92%"></div>
+<div class="h-full bg-warning-amber/30" style="width: 8%"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-label-mono text-[11px]">
+<span class="text-on-surface">Afternoon (12PM - 6PM)</span>
+<span class="text-tertiary">64% Intentional</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-tertiary shadow-[0_0_8px_rgba(78,222,163,0.4)]" style="width: 64%"></div>
+<div class="h-full bg-warning-amber" style="width: 36%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Daily Timeline -->
+<section class="relative timeline-line">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest mb-8 ml-10">Daily Timeline</h2>
+<div class="space-y-8 ml-10">
+<!-- Peak Card -->
+<div class="relative">
+<div class="absolute -left-[34px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary shadow-[0_0_12px_rgba(173,198,255,0.6)] z-10 border-2 border-obsidian"></div>
+<div class="glass-card rounded-2xl p-5 flex items-center gap-6">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg font-medium text-on-surface">Deep Work Peak</h4>
+<span class="font-label-mono text-[11px] text-on-surface-variant">09:15 AM</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">High-focus state maintained for 142 minutes. Logic centers highly active.</p>
+</div>
+</div>
+</div>
+<!-- Spike Card -->
+<div class="relative">
+<div class="absolute -left-[34px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-warning-amber shadow-[0_0_12px_rgba(245,158,11,0.4)] z-10 border-2 border-obsidian"></div>
+<div class="glass-card rounded-2xl p-5 flex items-center gap-6 border-warning-amber/10">
+<div class="w-12 h-12 rounded-xl bg-warning-amber/10 flex items-center justify-center text-warning-amber">
+<span class="material-symbols-outlined text-2xl">priority_high</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg font-medium text-on-surface">Distraction Spike</h4>
+<span class="font-label-mono text-[11px] text-on-surface-variant">02:45 PM</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">Context switching detected. 3 non-essential tabs opened during deep work block.</p>
+</div>
+</div>
+</div>
+<!-- Clarity Card -->
+<div class="relative">
+<div class="absolute -left-[34px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-aura-violet shadow-[0_0_12px_rgba(139,92,246,0.4)] z-10 border-2 border-obsidian"></div>
+<div class="glass-card rounded-2xl p-5 flex items-center gap-6 border-aura-violet/10">
+<div class="w-12 h-12 rounded-xl bg-aura-violet/10 flex items-center justify-center text-aura-violet">
+<span class="material-symbols-outlined text-2xl">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg font-medium text-on-surface">Subjective Clarity</h4>
+<span class="font-label-mono text-[11px] text-on-surface-variant">05:00 PM</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">Evening reflection logged. High emotional resonance with long-term goals noted.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full backdrop-blur-xl border border-outline-variant/50 bg-glass-surface/60 shadow-2xl z-50 flex justify-around items-center h-dock-height px-4">
+<!-- Insights -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-6 py-2 hover:text-on-surface transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1">query_stats</span>
+<span class="font-label-mono text-label-mono">Insights</span>
+</a>
+<!-- Coach -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-6 py-2 hover:text-on-surface transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1">smart_toy</span>
+<span class="font-label-mono text-label-mono">Coach</span>
+</a>
+<!-- Reflections (Active) -->
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-full px-6 py-2 transition-all duration-300 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-mono text-label-mono">Reflections</span>
+</a>
+</nav>
+<!-- Floating Background Atmosphere -->
+<div class="fixed top-1/4 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-1/4 -right-20 w-96 h-96 bg-aura-violet/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<script>
+        // Micro-interactions for glass cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

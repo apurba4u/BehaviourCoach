@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Focus Session | DisciplineOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;800&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "outline-variant": "#424754",
+                  "surface-bright": "#39393b",
+                  "on-primary-fixed-variant": "#004395",
+                  "glass-surface": "#27272A",
+                  "on-primary-container": "#00285d",
+                  "surface-container-low": "#1c1b1d",
+                  "primary-fixed": "#d8e2ff",
+                  "secondary-container": "#571bc1",
+                  "tertiary-container": "#00a572",
+                  "on-secondary-fixed-variant": "#5516be",
+                  "on-error-container": "#ffdad6",
+                  "surface-container": "#201f22",
+                  "primary-container": "#4d8eff",
+                  "error": "#ffb4ab",
+                  "secondary-fixed-dim": "#d0bcff",
+                  "deep-charcoal": "#18181B",
+                  "tertiary-fixed-dim": "#4edea3",
+                  "surface-dim": "#131315",
+                  "on-secondary-container": "#c4abff",
+                  "inverse-on-surface": "#313032",
+                  "error-container": "#93000a",
+                  "surface-container-high": "#2a2a2c",
+                  "on-surface-variant": "#c2c6d6",
+                  "secondary": "#d0bcff",
+                  "obsidian": "#09090B",
+                  "primary": "#adc6ff",
+                  "on-background": "#e5e1e4",
+                  "inverse-primary": "#005ac2",
+                  "on-error": "#690005",
+                  "on-secondary-fixed": "#23005c",
+                  "primary-fixed-dim": "#adc6ff",
+                  "on-tertiary-fixed": "#002113",
+                  "on-primary-fixed": "#001a42",
+                  "aura-violet": "#8B5CF6",
+                  "tertiary": "#4edea3",
+                  "on-tertiary": "#003824",
+                  "secondary-fixed": "#e9ddff",
+                  "on-secondary": "#3c0091",
+                  "surface": "#131315",
+                  "on-tertiary-container": "#00311f",
+                  "recovery-rose": "#FB7185",
+                  "surface-container-lowest": "#0e0e10",
+                  "inverse-surface": "#e5e1e4",
+                  "on-tertiary-fixed-variant": "#005236",
+                  "surface-variant": "#353437",
+                  "outline": "#8c909f",
+                  "background": "#131315",
+                  "on-primary": "#002e6a",
+                  "warning-amber": "#F59E0B",
+                  "on-surface": "#e5e1e4",
+                  "success-emerald": "#10B981",
+                  "surface-container-highest": "#353437",
+                  "surface-tint": "#adc6ff",
+                  "tertiary-fixed": "#6ffbbe"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "margin-desktop": "40px",
+                  "margin-mobile": "20px",
+                  "gutter": "24px",
+                  "unit": "8px",
+                  "container-max-width": "1200px",
+                  "dock-height": "72px"
+          },
+          "fontFamily": {
+                  "display-lg": ["Hanken Grotesk"],
+                  "body-md": ["Inter"],
+                  "label-mono": ["JetBrains Mono"],
+                  "headline-lg-mobile": ["Hanken Grotesk"],
+                  "body-lg": ["Inter"],
+                  "headline-lg": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+                  "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                  "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "label-mono": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                  "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                  "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                  "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #09090B;
+      color: #e5e1e4;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .glass-card {
+      background: rgba(39, 39, 42, 0.4);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(66, 71, 84, 0.3);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .aura-glow {
+      filter: drop-shadow(0 0 15px rgba(173, 198, 255, 0.3));
+    }
+
+    .animate-breathe {
+      animation: breathe 8s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+
+    .timer-ring {
+      stroke-dasharray: 880;
+      stroke-dashoffset: 220; /* Example: 75% focus */
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    /* Custom Hide Scrollbar */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-obsidian min-h-screen flex flex-col items-center">
+<!-- Ambient Background Shader -->
+<!-- STITCH_SHADER_START:ANIMATION_12 class="fixed inset-0 w-full h-full z-0 opacity-40 pointer-events-none" -->
+<div class="fixed inset-0 w-full h-full z-0 opacity-40 pointer-events-none" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_12" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_12');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+
+// Simplex 2D noise
+vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+float snoise(vec2 v){
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+           -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1;
+  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+  + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+    dot(x12.zw,x12.zw)), 0.0);
+ m = m*m ;
+  m = m*m ;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Shift UVs for a slow, organic crawl
+    vec2 movement = vec2(u_time * 0.02, u_time * 0.015);
+    float n1 = snoise(uv * 2.0 + movement);
+    float n2 = snoise(uv * 4.0 - movement * 0.5);
+    
+    // Mix Intelligence Blue and Empathetic Violet stops
+    vec3 colorA = vec3(0.035, 0.035, 0.043); // Deep Obsidian
+    vec3 colorB = vec3(0.23, 0.51, 0.96);    // Intelligence Blue (#3B82F6)
+    vec3 colorC = vec3(0.54, 0.36, 0.96);    // Empathetic Violet (#8B5CF6)
+    
+    float weight = smoothstep(-0.5, 0.5, n1 + n2 * 0.5);
+    vec3 finalColor = mix(colorA, mix(colorB, colorC, uv.y), weight * 0.15);
+    
+    // Add a subtle vignette
+    float vignette = 1.0 - length(uv - 0.5) * 1.2;
+    finalColor *= smoothstep(0.0, 0.8, vignette);
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_12 -->
+<!-- Top Navigation Shell (Filtered for Focus Screen) -->
+<header class="fixed top-0 w-full z-50 bg-glass-surface/50 backdrop-blur-2xl border-b border-outline-variant/50">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-container-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-display-lg text-body-lg font-semibold tracking-tight text-on-surface">Focus Session</span>
+</div>
+<button class="active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+</header>
+<main class="relative z-10 w-full max-w-md px-6 pt-24 pb-32 flex flex-col items-center gap-10 overflow-y-auto no-scrollbar">
+<!-- Focus Goal Header -->
+<div class="text-center space-y-2">
+<p class="font-label-mono text-label-mono uppercase tracking-widest text-primary/60">Current Protocol</p>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Refining Neural Architecture</h1>
+</div>
+<!-- Central Timer Aura -->
+<div class="relative w-72 h-72 flex items-center justify-center">
+<!-- Glow Layer -->
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-[60px] animate-breathe"></div>
+<!-- Ring -->
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-outline-variant/20" cx="144" cy="144" fill="transparent" r="138" stroke="currentColor" stroke-width="2"></circle>
+<circle class="text-primary aura-glow timer-ring" cx="144" cy="144" fill="transparent" r="138" stroke="currentColor" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<!-- Time Display -->
+<div class="flex flex-col items-center">
+<span class="font-display-lg text-[64px] leading-none text-on-surface tracking-tighter">42:18</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant mt-2">MINUTES REMAINING</span>
+</div>
+</div>
+<!-- Controls -->
+<div class="flex items-center gap-6 w-full">
+<button class="flex-1 glass-card py-4 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform duration-200 group">
+<span class="material-symbols-outlined text-recovery-rose group-hover:scale-110 transition-transform">stop_circle</span>
+<span class="font-body-md font-medium text-on-surface">Finish</span>
+</button>
+<button class="w-20 h-20 bg-primary rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(173,198,255,0.4)] active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined text-on-primary text-4xl" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="flex-1 glass-card py-4 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform duration-200 group">
+<span class="material-symbols-outlined text-primary group-hover:rotate-45 transition-transform">refresh</span>
+<span class="font-body-md font-medium text-on-surface">Reset</span>
+</button>
+</div>
+<!-- AI Focus Tip -->
+<div class="w-full glass-card p-6 rounded-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">psychology</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-aura-violet" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-body-md font-semibold text-on-surface">Coach Insight</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+            "Your heart rate has stabilized. You are entering a state of flow. Let the physical world fade; the work is all that exists now."
+          </p>
+</div>
+</div>
+</div>
+<!-- Ambient Sound Selector -->
+<div class="w-full space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Atmospheric Feed</h3>
+<span class="font-label-mono text-[10px] text-primary/40">HI-RES AUDIO</span>
+</div>
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<button class="flex-shrink-0 glass-card px-4 py-3 rounded-xl flex items-center gap-3 border-primary/50 bg-primary/5">
+<span class="material-symbols-outlined text-primary">waves</span>
+<span class="font-body-md text-sm text-on-surface">Ocean Deep</span>
+</button>
+<button class="flex-shrink-0 glass-card px-4 py-3 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">forest</span>
+<span class="font-body-md text-sm text-on-surface">Black Forest</span>
+</button>
+<button class="flex-shrink-0 glass-card px-4 py-3 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">grain</span>
+<span class="font-body-md text-sm text-on-surface">White Noise</span>
+</button>
+<button class="flex-shrink-0 glass-card px-4 py-3 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">thunderstorm</span>
+<span class="font-body-md text-sm text-on-surface">Midnight Storm</span>
+</button>
+</div>
+</div>
+<!-- Daily Focus Summary (Diagnostic Style) -->
+<div class="w-full glass-card p-6 rounded-2xl border-dashed border-outline-variant/50">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-label-mono text-label-mono text-on-surface uppercase tracking-wider">Daily_Log.sys</h3>
+<span class="text-[10px] font-label-mono text-success-emerald px-2 py-0.5 rounded bg-success-emerald/10">SYNCED</span>
+</div>
+<div class="space-y-3 font-label-mono text-[13px]">
+<div class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant">SESSION_COUNT</span>
+<span class="text-primary">04</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant">ACCUMULATED_DEEP_WORK</span>
+<span class="text-primary">05h 12m</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant">COGNITIVE_LOAD_AVG</span>
+<span class="text-tertiary">LOW</span>
+</div>
+<div class="mt-4 pt-2 space-y-2">
+<p class="text-[11px] text-on-surface-variant/40">RECENT_HIST:</p>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+<span class="text-on-surface-variant/70">08:00 - 09:30 | ARCHITECTURE_DEV</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary/40"></div>
+<span class="text-on-surface-variant/70">10:45 - 11:15 | INBOX_ZERO</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Anchor (Customized for Focus context) -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-6 bg-glass-surface/80 backdrop-blur-3xl rounded-full px-8 py-3 border border-outline-variant/30 shadow-2xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-full w-12 h-12 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">self_improvement</span>
+</a>
+</nav>
+<script>
+    // Micro-interaction: Breathing effect for the AI card
+    const aiCard = document.querySelector('.glass-card.group');
+    if (aiCard) {
+      aiCard.addEventListener('mousemove', (e) => {
+        const { left, top, width, height } = aiCard.getBoundingClientRect();
+        const x = ((e.clientX - left) / width - 0.5) * 10;
+        const y = ((e.clientY - top) / height - 0.5) * 10;
+        aiCard.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg)`;
+      });
+      aiCard.addEventListener('mouseleave', () => {
+        aiCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+      });
+    }
+
+    // Timer Logic Placeholder
+    let progress = 75;
+    const ring = document.querySelector('.timer-ring');
+    if (ring) {
+      const radius = ring.r.baseVal.value;
+      const circumference = 2 * Math.PI * radius;
+      ring.style.strokeDasharray = `${circumference} ${circumference}`;
+      
+      const setProgress = (percent) => {
+        const offset = circumference - (percent / 100) * circumference;
+        ring.style.strokeDashoffset = offset;
+      };
+      
+      setProgress(progress);
+    }
+  </script>
+</body></html>

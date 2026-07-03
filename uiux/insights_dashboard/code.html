@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DisciplineOS | Pulse Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "glass-surface": "#27272A",
+                      "inverse-surface": "#e5e1e4",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "on-primary-fixed": "#001a42",
+                      "surface-dim": "#131315",
+                      "background": "#131315",
+                      "error-container": "#93000a",
+                      "on-primary-fixed-variant": "#004395",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#adc6ff",
+                      "on-primary-container": "#00285d",
+                      "tertiary-container": "#00a572",
+                      "surface": "#131315",
+                      "on-surface-variant": "#c2c6d6",
+                      "on-surface": "#e5e1e4",
+                      "primary": "#adc6ff",
+                      "on-secondary": "#3c0091",
+                      "on-primary": "#002e6a",
+                      "on-error": "#690005",
+                      "on-background": "#e5e1e4",
+                      "obsidian": "#09090B",
+                      "primary-container": "#4d8eff",
+                      "on-secondary-container": "#c4abff",
+                      "surface-container-low": "#1c1b1d",
+                      "deep-charcoal": "#18181B",
+                      "inverse-on-surface": "#313032",
+                      "primary-fixed-dim": "#adc6ff",
+                      "secondary-container": "#571bc1",
+                      "tertiary": "#4edea3",
+                      "on-error-container": "#ffdad6",
+                      "surface-variant": "#353437",
+                      "surface-container": "#201f22",
+                      "surface-container-highest": "#353437",
+                      "outline-variant": "#424754",
+                      "surface-container-lowest": "#0e0e10",
+                      "secondary-fixed-dim": "#d0bcff",
+                      "warning-amber": "#F59E0B",
+                      "tertiary-fixed": "#6ffbbe",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "on-secondary-fixed-variant": "#5516be",
+                      "inverse-primary": "#005ac2",
+                      "success-emerald": "#10B981",
+                      "recovery-rose": "#FB7185",
+                      "outline": "#8c909f",
+                      "surface-container-high": "#2a2a2c",
+                      "on-tertiary-container": "#00311f",
+                      "secondary": "#d0bcff",
+                      "on-tertiary-fixed": "#002113",
+                      "secondary-fixed": "#e9ddff",
+                      "surface-bright": "#39393b",
+                      "on-tertiary": "#003824",
+                      "on-secondary-fixed": "#23005c",
+                      "primary-fixed": "#d8e2ff",
+                      "aura-violet": "#8B5CF6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "dock-height": "72px",
+                      "container-max-width": "1200px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-mono": ["JetBrains Mono"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "label-mono": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(39, 39, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .aura-glow {
+            filter: drop-shadow(0 0 20px rgba(173, 198, 255, 0.3));
+        }
+
+        .violet-glow {
+            filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.2));
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .animate-pulse-ring {
+            animation: pulse-ring 4s ease-in-out infinite;
+        }
+
+        body {
+            background-color: #09090B;
+            color: #e5e1e4;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-obsidian/80 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-margin-mobile h-16">
+<div class="flex items-center gap-3">
+<img alt="DisciplineOS Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLtjOvb1Erdq-bztPFSoYKc9gR3OQM_XghAzzX8lmfKglKkae-pPaYamdogmHgsK5xbD-IN_udhtOcYKqSYI7rJWBwneh8rZ0rJO1JRBXWuKicAgr1bGqSHirO_Irs9-FWoCgTA9_H5d2EeA7bHWGmOV3-nSssM7t2GLV_7Yosx3-8KP4JNU-HDauurITSvSku6-gOxVL9cLeyHP9tOnP0RwJZ9a-c6mJD56dHT_rCwvESgciwNKEgmtcPs"/>
+<span class="font-display-lg text-headline-lg-mobile tracking-tighter text-on-surface">DisciplineOS</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-fashion editorial portrait of a calm and focused individual with sharp features, shot in deep obsidian shadows with a single blue rim light. The mood is sophisticated and high-tech, aligning with the DisciplineOS aesthetic of silent intelligence and premium self-mastery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ-RBluIWJiJFz2zZaqqpXk38Nx-nykz9Ec_Z4KDI7jzHEwoOkLWxkZ0KvRyZPCmgIbzmPCIeWrD7lqY4-MWakTTEcnjw-GBXxzvd3aSerqLPjLKtQrub8cJ_CDviyK8AAmVGdVelB7JqL1z0LJWZ9cLxYiMB-FNu9tJI7_PKdm-pxJ6GlGkCp1gAbfZY_y15A-dwBU6IszgNfOMBgfuHhG29dBkOJyoSAMEOdIAVQ57KsFKM-3Ace2SXSo3ZHZ3eQ4ojuSfU6_PI"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-lg mx-auto">
+<!-- Discipline Score (The Aura) -->
+<section class="flex flex-col items-center justify-center mb-16 relative">
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Outer decorative ring -->
+<div class="absolute inset-0 rounded-full border-2 border-primary/10 animate-pulse-ring"></div>
+<!-- SVG Aura Ring -->
+<svg class="w-full h-full transform -rotate-90 aura-glow" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="282.7" stroke-dashoffset="45" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-display-lg text-[64px] font-extrabold text-on-surface">84</span>
+<span class="font-label-mono text-primary uppercase tracking-widest text-[11px]">Daily Score</span>
+</div>
+</div>
+<div class="mt-8 text-center">
+<p class="font-body-md text-on-surface-variant max-w-[240px]">Your consistency is <span class="text-primary font-medium">12% higher</span> than your 7-day average.</p>
+</div>
+</section>
+<!-- AI Insight Card -->
+<section class="mb-12">
+<div class="glass-card rounded-3xl p-6 relative overflow-hidden violet-glow">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-aura-violet text-4xl">auto_awesome</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-aura-violet text-lg" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-label-mono text-aura-violet uppercase tracking-widest">Empathetic Coach</span>
+</div>
+<h3 class="font-headline-lg-mobile text-on-surface mb-3">Optimize Deep Work</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                    Your focus is strongest before 11 AM. Leverage this window for Deep Work to accelerate your momentum for the identity 'Systems Architect'.
+                </p>
+</div>
+</section>
+<!-- Quick Focus Session Button -->
+<section class="mb-16">
+<button class="w-full bg-primary-container text-on-primary-container py-5 rounded-2xl font-bold font-display-lg text-lg flex items-center justify-center gap-3 hover:opacity-90 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(77,142,255,0.2)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timer</span>
+                Start Focus Session
+            </button>
+</section>
+<!-- Behavioral Momentum & Weekly Audit -->
+<div class="grid grid-cols-2 gap-gutter mb-12">
+<div class="glass-card rounded-2xl p-5 flex flex-col justify-between h-40">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-[10px] uppercase text-on-surface-variant">Momentum</span>
+<span class="material-symbols-outlined text-primary text-sm">trending_up</span>
+</div>
+<div class="h-16 flex items-end gap-1">
+<!-- Simple Bar Chart Mockup -->
+<div class="w-full bg-primary/20 h-[30%] rounded-sm"></div>
+<div class="w-full bg-primary/20 h-[45%] rounded-sm"></div>
+<div class="w-full bg-primary/40 h-[60%] rounded-sm"></div>
+<div class="w-full bg-primary/60 h-[85%] rounded-sm"></div>
+<div class="w-full bg-primary h-[100%] rounded-sm"></div>
+</div>
+<span class="font-body-md text-on-surface font-semibold">+4.2 pts</span>
+</div>
+<div class="glass-card rounded-2xl p-5 flex flex-col justify-between h-40">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-[10px] uppercase text-on-surface-variant">Weekly Audit</span>
+<span class="material-symbols-outlined text-tertiary text-sm">calendar_view_week</span>
+</div>
+<div class="grid grid-cols-7 gap-1">
+<div class="h-2 w-full rounded-full bg-tertiary"></div>
+<div class="h-2 w-full rounded-full bg-tertiary"></div>
+<div class="h-2 w-full rounded-full bg-tertiary"></div>
+<div class="h-2 w-full rounded-full bg-surface-variant"></div>
+<div class="h-2 w-full rounded-full bg-tertiary"></div>
+<div class="h-2 w-full rounded-full bg-tertiary"></div>
+<div class="h-2 w-full rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-mono text-[11px] text-on-surface-variant">Consistency</span>
+<span class="font-body-md text-tertiary font-semibold">92%</span>
+</div>
+</div>
+</div>
+<!-- Focus Today Section -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-lg-mobile text-on-surface">Focus Today</h2>
+<span class="font-label-mono text-primary text-[11px] uppercase tracking-tighter">Identity: High-Performer</span>
+</div>
+<div class="space-y-4">
+<div class="glass-card p-5 rounded-2xl flex items-center gap-4 group cursor-pointer hover:bg-white/5 transition-colors">
+<div class="w-6 h-6 rounded-md border border-primary/40 flex items-center justify-center group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity">check</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface font-medium">Design OS Pulse Dashboard</p>
+<p class="font-label-mono text-[11px] text-on-surface-variant">2 Hours • Deep Work</p>
+</div>
+</div>
+<div class="glass-card p-5 rounded-2xl flex items-center gap-4 group cursor-pointer hover:bg-white/5 transition-colors">
+<div class="w-6 h-6 rounded-md border border-primary/40 flex items-center justify-center group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity">check</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface font-medium">Weekly Strategic Review</p>
+<p class="font-label-mono text-[11px] text-on-surface-variant">45 Mins • Reflection</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Shared Component) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-center items-end pb-8">
+<div class="bg-glass-surface/60 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] w-[calc(100%-40px)] max-w-md rounded-full flex justify-between items-center p-2">
+<!-- Insights -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-2 px-6 hover:text-on-surface transition-colors scale-110 active:scale-95 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1">query_stats</span>
+<span class="font-label-mono text-[10px] uppercase tracking-widest">Insights</span>
+</a>
+<!-- Coach (Active) -->
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-full py-2 px-6 scale-110 active:scale-95 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-label-mono text-[10px] uppercase tracking-widest">Coach</span>
+</a>
+<!-- Reflections -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-2 px-6 hover:text-on-surface transition-colors scale-110 active:scale-95 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1">auto_stories</span>
+<span class="font-label-mono text-[10px] uppercase tracking-widest">Reflections</span>
+</a>
+</div>
+</nav>
+<!-- Visual Atmosphere Blobs -->
+<div class="fixed top-[20%] -left-[10%] w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-[10%] -right-[10%] w-80 h-80 bg-aura-violet/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<script>
+        // Micro-interaction: Dynamic text swap for insights or other fun elements
+        const labels = ['Focusing...', 'Disciplined', 'Optimized', 'Centered'];
+        let currentIndex = 0;
+        
+        // This could be used for a small "status" tag next to the profile
+        console.log("DisciplineOS Pulse Active");
+
+        // Interaction logic for tasks
+        document.querySelectorAll('.glass-card.group').forEach(task => {
+            task.addEventListener('click', function() {
+                const check = this.querySelector('.material-symbols-outlined');
+                const text = this.querySelector('p');
+                if (check.style.opacity === "1") {
+                    check.style.opacity = "0";
+                    text.classList.remove('line-through', 'opacity-50');
+                } else {
+                    check.style.opacity = "1";
+                    text.classList.add('line-through', 'opacity-50');
+                }
+            });
+        });
+    </script>
+</body></html>

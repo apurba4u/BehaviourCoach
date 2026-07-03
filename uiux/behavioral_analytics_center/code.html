@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DisciplineOS | Behavioral Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "success-emerald": "#10B981",
+                    "on-surface-variant": "#c2c6d6",
+                    "error": "#ffb4ab",
+                    "primary": "#adc6ff",
+                    "surface-tint": "#adc6ff",
+                    "surface-bright": "#39393b",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "primary-fixed-dim": "#adc6ff",
+                    "primary-container": "#4d8eff",
+                    "surface-container-highest": "#353437",
+                    "on-secondary-container": "#c4abff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "secondary-fixed": "#e9ddff",
+                    "surface-dim": "#131315",
+                    "tertiary": "#4edea3",
+                    "aura-violet": "#8B5CF6",
+                    "on-primary-fixed-variant": "#004395",
+                    "surface": "#131315",
+                    "on-error": "#690005",
+                    "glass-surface": "#27272A",
+                    "on-background": "#e5e1e4",
+                    "on-error-container": "#ffdad6",
+                    "outline-variant": "#424754",
+                    "surface-container": "#201f22",
+                    "outline": "#8c909f",
+                    "on-tertiary": "#003824",
+                    "deep-charcoal": "#18181B",
+                    "secondary-fixed-dim": "#d0bcff",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-on-surface": "#313032",
+                    "inverse-surface": "#e5e1e4",
+                    "on-primary-fixed": "#001a42",
+                    "secondary-container": "#571bc1",
+                    "surface-container-low": "#1c1b1d",
+                    "secondary": "#d0bcff",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary": "#3c0091",
+                    "on-secondary-fixed": "#23005c",
+                    "on-primary-container": "#00285d",
+                    "warning-amber": "#F59E0B",
+                    "obsidian": "#09090B",
+                    "error-container": "#93000a",
+                    "surface-container-high": "#2a2a2c",
+                    "recovery-rose": "#FB7185",
+                    "on-tertiary-container": "#00311f",
+                    "on-surface": "#e5e1e4",
+                    "surface-container-lowest": "#0e0e10",
+                    "on-primary": "#002e6a",
+                    "background": "#131315",
+                    "surface-variant": "#353437",
+                    "inverse-primary": "#005ac2",
+                    "tertiary-container": "#00a572",
+                    "on-secondary-fixed-variant": "#5516be"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max-width": "1200px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "40px",
+                    "dock-height": "72px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Hanken Grotesk", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "headline-lg": ["Hanken Grotesk", "sans-serif"],
+                    "display-lg": ["Hanken Grotesk", "sans-serif"],
+                    "label-mono": ["JetBrains Mono", "monospace"],
+                    "body-lg": ["Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-mono": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #09090B;
+            color: #e5e1e4;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(39, 39, 42, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(140, 144, 159, 0.15);
+            border-radius: 24px;
+        }
+        .aura-glow-primary {
+            box-shadow: 0 0 40px -10px rgba(173, 198, 255, 0.15);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopAppBar Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max-width mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A cinematic, ultra-high-definition portrait of a focused professional in a dark, tech-oriented home office. The lighting is dramatic, coming from several soft blue screens, casting soft rim light on the subject. The style is minimalist and high-end, mirroring a premium dark-mode interface with obsidian and primary blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo3HgnGEZHlZ2frIyouyIApoTRPfdsB4b9PrMSKWAHbhmXcaAdWhIga4CPNO1gAeG5kiPCtJlLpQjAqtOupzTgbepeq1wwaQpiXoYQaVfFX3MjFWUUqmFX4zFpv_B53cccY9osDb01sSyhUHc138yHhTn1i0PA-ed1Fm7fxXrTyxkXCrHDvS6tlQr8NVciFfC-qKEFfxenVo_8bziRC8jwlRuUWr65ECi47j-ju2oVYdyiHV6494aYfO1CCq2Zs_3aIj6whuzH_Fg"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-semibold tracking-tight text-on-surface">Analytics Center</h1>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity" data-icon="settings">settings</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-40 px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto space-y-16">
+<!-- Section 6: Longest Momentum (High Impact Stat) -->
+<section class="relative">
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
+<div class="glass-card p-10 flex flex-col md:flex-row items-center justify-between gap-8 aura-glow-primary overflow-hidden relative">
+<div class="relative z-10 text-center md:text-left">
+<span class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-primary/60 mb-2 block">Current Streak</span>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">22 Days of Intentional Action</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-lg">Your behavior is shifting from reactionary to architectural. Systems are solidifying.</p>
+</div>
+<div class="relative z-10 w-48 h-48 flex items-center justify-center">
+<!-- Aura Ring Visualization -->
+<svg class="w-full h-full rotate-[-90deg]">
+<circle class="text-surface-variant" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502.6" stroke-dashoffset="120" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-display-lg text-display-lg text-primary">76%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 1 & 2: Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Section 1: Discipline Score Trend -->
+<section class="lg:col-span-2 glass-card p-8 flex flex-col space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Discipline Score Trend</h3>
+<p class="text-on-surface-variant">Cognitive resource management over 7 days</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-primary-container/20 text-primary text-xs font-label-mono">DAILY AVG: 84</span>
+</div>
+</div>
+<div class="h-64 w-full relative flex items-end justify-between px-2">
+<!-- Simulated Area Chart with CSS/Divs -->
+<div class="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-primary/10 to-transparent"></div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500 group-hover:bg-primary/40 h-32 relative">
+<div class="absolute -top-1 left-0 w-full h-1 bg-primary blur-[2px]"></div>
+</div>
+<span class="font-label-mono text-xs opacity-40">MON</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500 group-hover:bg-primary/40 h-40 relative">
+<div class="absolute -top-1 left-0 w-full h-1 bg-primary blur-[2px]"></div>
+</div>
+<span class="font-label-mono text-xs opacity-40">TUE</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500 group-hover:bg-primary/40 h-28 relative">
+<div class="absolute -top-1 left-0 w-full h-1 bg-primary blur-[2px]"></div>
+</div>
+<span class="font-label-mono text-xs opacity-40">WED</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500 group-hover:bg-primary/40 h-48 relative">
+<div class="absolute -top-1 left-0 w-full h-1 bg-primary blur-[2px]"></div>
+</div>
+<span class="font-label-mono text-xs opacity-40">THU</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500 group-hover:bg-primary/40 h-52 relative">
+<div class="absolute -top-1 left-0 w-full h-1 bg-primary blur-[2px]"></div>
+</div>
+<span class="font-label-mono text-xs opacity-40">FRI</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500 group-hover:bg-primary/40 h-36 relative">
+<div class="absolute -top-1 left-0 w-full h-1 bg-primary blur-[2px]"></div>
+</div>
+<span class="font-label-mono text-xs opacity-40">SAT</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500 group-hover:bg-primary/40 h-44 relative">
+<div class="absolute -top-1 left-0 w-full h-1 bg-primary blur-[2px]"></div>
+</div>
+<span class="font-label-mono text-xs opacity-40">SUN</span>
+</div>
+</div>
+</section>
+<!-- Section 2: Distraction Heatmap -->
+<section class="glass-card p-8 flex flex-col">
+<div class="mb-6">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Distraction Heatmap</h3>
+<p class="text-on-surface-variant">Density of focus-drift events</p>
+</div>
+<div class="grid grid-cols-6 gap-2 flex-grow">
+<!-- Heatmap Simulation -->
+<script>
+                        const heatmap = [
+                            1, 2, 1, 1, 3, 2,
+                            1, 1, 2, 4, 3, 1,
+                            1, 2, 5, 8, 9, 7, // 2:30 - 4:00 highlighted area
+                            6, 7, 5, 3, 2, 1,
+                            1, 1, 1, 2, 1, 1
+                        ];
+                        heatmap.forEach(val => {
+                            let opacity = val / 10;
+                            document.write(`<div class="rounded-sm aspect-square" style="background-color: rgba(173, 198, 255, ${opacity})"></div>`);
+                        });
+                    </script>
+</div>
+<div class="mt-6 p-4 rounded-xl bg-error/10 border border-error/20">
+<p class="text-sm font-label-mono text-error flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="warning">warning</span>
+                        PEAK DRIFT: 14:30 - 16:00
+                    </p>
+</div>
+</section>
+</div>
+<!-- Section 3: Behavioral Consistency (Multi-layered Chart) -->
+<section class="glass-card p-10">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Behavioral Consistency</h3>
+<div class="flex gap-6 font-label-mono text-xs">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="opacity-60">FOCUS</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="opacity-60">MOOD</span>
+</div>
+</div>
+</div>
+<div class="h-80 w-full relative">
+<!-- SVG Chart for complex layering -->
+<svg class="w-full h-full overflow-visible" viewbox="0 0 1000 300">
+<!-- Mood Flow Gradient Line -->
+<path d="M0,250 C100,220 200,280 300,180 C400,80 500,200 600,150 C700,100 800,220 900,120 L1000,140" fill="none" stroke="url(#moodGradient)" stroke-linecap="round" stroke-width="4"></path>
+<!-- Focus Line -->
+<path class="text-primary" d="M0,150 C150,140 300,120 450,110 C600,100 750,90 900,80 L1000,75" fill="none" stroke="currentColor" stroke-dasharray="8 4" stroke-width="2"></path>
+<defs>
+<lineargradient id="moodGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#4edea3" stop-opacity="0.2"></stop>
+<stop offset="50%" stop-color="#4edea3" stop-opacity="1"></stop>
+<stop offset="100%" stop-color="#4edea3" stop-opacity="0.2"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Tooltip Mockup -->
+<div class="absolute top-1/2 left-[45%] -translate-y-1/2 glass-card p-3 border border-tertiary/30 animate-float">
+<p class="font-label-mono text-[10px] text-tertiary">HIGH CORRELATION</p>
+<p class="text-xs">Focus peaks 20m after Mood lift</p>
+</div>
+</div>
+</section>
+<!-- Section 4: AI Pattern Detection (Bento Cards) -->
+<section class="space-y-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="psychology">psychology</span>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">AI Pattern Detection</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Pattern Card 1 -->
+<div class="glass-card p-8 flex gap-6 items-start hover:scale-[1.01] transition-transform duration-300">
+<div class="w-12 h-12 rounded-2xl bg-error/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-error" data-icon="social_distance">social_distance</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-medium text-on-surface mb-2">Social media spikes when Stress &gt; 7</h4>
+<p class="text-on-surface-variant leading-relaxed">Detected 4 instances this week where stress elevation led to 45m+ doom-scrolling sessions.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] font-label-mono bg-surface-container px-2 py-1 rounded border border-outline-variant/30">BEHAVIORAL ANCHOR</span>
+</div>
+</div>
+</div>
+<!-- Pattern Card 2 -->
+<div class="glass-card p-8 flex gap-6 items-start hover:scale-[1.01] transition-transform duration-300 border-tertiary/20">
+<div class="w-12 h-12 rounded-2xl bg-tertiary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-icon="wb_sunny">wb_sunny</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-medium text-on-surface mb-2">Consistent Morning Flow (08:00-11:00)</h4>
+<p class="text-on-surface-variant leading-relaxed">92% success rate in deep work during this window. This is your primary architectural period.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] font-label-mono bg-tertiary/10 text-tertiary px-2 py-1 rounded border border-tertiary/20">GOLDEN WINDOW</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Monthly Growth -->
+<section class="glass-card p-8 overflow-hidden relative">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+
+</div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
+<div class="max-w-md">
+<span class="font-label-mono text-label-mono text-tertiary uppercase tracking-widest mb-4 block">Monthly Identity Shift</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Systems Architect</h3>
+<p class="text-on-surface-variant italic">"You no longer just perform tasks; you build structures that make tasks effortless."</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="text-5xl font-display-lg text-tertiary">+14%</span>
+<p class="font-label-mono text-xs opacity-60">CONSISTENCY INCREASE</p>
+</div>
+<div class="w-px h-16 bg-outline-variant/30"></div>
+<div class="w-24 h-24 relative">
+<svg class="w-full h-full rotate-[-90deg]">
+<circle class="text-surface-variant" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-tertiary" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="35" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Navigation Shell -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-glass-surface/90 dark:bg-glass-surface/90 backdrop-blur-3xl rounded-full border border-outline-variant/30 shadow-2xl shadow-obsidian/50 z-50">
+<div class="flex justify-around items-center h-dock-height px-6">
+<!-- Active: Insights -->
+<a class="flex flex-col items-center justify-center text-tertiary dark:text-tertiary-fixed-dim font-bold scale-110 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-mono text-[10px] uppercase tracking-tighter">Insights</span>
+</a>
+<!-- Inactive: Coach -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="psychology">psychology</span>
+<span class="font-label-mono text-[10px] uppercase tracking-tighter">Coach</span>
+</a>
+<!-- Inactive: Reflections -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="self_care">self_care</span>
+<span class="font-label-mono text-[10px] uppercase tracking-tighter">Reflections</span>
+</a>
+</div>
+</nav>
+<script>
+        // Subtle micro-interaction: update heatmap colors on hover
+        document.querySelectorAll('.rounded-sm.aspect-square').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.classList.add('scale-125', 'z-10', 'shadow-lg');
+                el.style.transition = 'all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('scale-125', 'z-10', 'shadow-lg');
+            });
+        });
+    </script>
+</body></html>
