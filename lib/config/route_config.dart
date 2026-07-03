@@ -1,0 +1,90 @@
+import 'package:discipline_os/core/widgets/floating_dock.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+/// DisciplineOS Route Configuration
+/// GoRouter setup with shell route for bottom navigation
+class RouteConfig {
+  RouteConfig._();
+
+  static final router = GoRouter(
+    initialLocation: '/insights',
+    routes: [
+      ShellRoute(
+        builder: (context, state, child) {
+          return ScaffoldWithDock(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/insights',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: _PlaceholderScreen(title: 'Insights'),
+            ),
+          ),
+          GoRoute(
+            path: '/coach',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: _PlaceholderScreen(title: 'Coach'),
+            ),
+          ),
+          GoRoute(
+            path: '/reflections',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: _PlaceholderScreen(title: 'Reflections'),
+            ),
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
+class ScaffoldWithDock extends StatelessWidget {
+  final Widget child;
+  const ScaffoldWithDock({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final location = GoRouterState.of(context).uri.toString();
+    int currentIndex = 0;
+    if (location.startsWith('/coach')) currentIndex = 1;
+    if (location.startsWith('/reflections')) currentIndex = 2;
+
+    return Scaffold(
+      body: child,
+      bottomNavigationBar: FloatingDock(
+        currentIndex: currentIndex,
+        items: const [
+          DockItem(icon: Icons.query_stats, label: 'Insights'),
+          DockItem(icon: Icons.smart_toy, label: 'Coach'),
+          DockItem(icon: Icons.auto_stories, label: 'Reflections'),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              context.go('/insights');
+            case 1:
+              context.go('/coach');
+            case 2:
+              context.go('/reflections');
+          }
+        },
+      ),
+    );
+  }
+}
+
+class _PlaceholderScreen extends StatelessWidget {
+  final String title;
+  const _PlaceholderScreen({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.headlineMedium,
+      ),
+    );
+  }
+}
