@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart' as log;
 
 /// DisciplineOS Logger
-/// Centralized logging utility
+/// Centralized logging utility - disabled in release mode
 class Logger {
   Logger._();
 
@@ -13,18 +14,25 @@ class Logger {
       colors: true,
       printEmojis: true,
     ),
+    level: kReleaseMode ? log.Level.off : log.Level.debug,
   );
 
   static void debug(String message) {
-    _logger.d(message);
+    if (!kReleaseMode) {
+      _logger.d(message);
+    }
   }
 
   static void info(String message) {
-    _logger.i(message);
+    if (!kReleaseMode) {
+      _logger.i(message);
+    }
   }
 
   static void warning(String message) {
-    _logger.w(message);
+    if (!kReleaseMode) {
+      _logger.w(message);
+    }
   }
 
   static void error(
@@ -32,6 +40,8 @@ class Logger {
     Object? error,
     StackTrace? stackTrace,
   }) {
-    _logger.e(message, error: error, stackTrace: stackTrace);
+    if (!kReleaseMode) {
+      _logger.e(message, error: error, stackTrace: stackTrace);
+    }
   }
 }

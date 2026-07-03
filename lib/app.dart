@@ -1,4 +1,5 @@
 import 'package:discipline_os/core/theme/app_theme.dart';
+import 'package:discipline_os/core/widgets/error_boundary.dart';
 import 'package:discipline_os/config/route_config.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +9,13 @@ class DisciplineOSApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'DisciplineOS',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
-      routerConfig: RouteConfig.router,
+    return ErrorBoundary(
+      child: MaterialApp.router(
+        title: 'DisciplineOS',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.darkTheme,
+        routerConfig: RouteConfig.router,
+      ),
     );
   }
 }

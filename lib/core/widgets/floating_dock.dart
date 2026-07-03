@@ -29,12 +29,12 @@ class FloatingDock extends StatelessWidget {
           color: AppColors.glassSurface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(tokens.borderRadiusFull),
           border: Border.all(
-            color: Colors.white.withValues(alpha: 0.1),
+            color: AppColors.white.withValues(alpha: 0.1),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.4),
+              color: AppColors.black.withValues(alpha: 0.4),
               blurRadius: 32,
               offset: const Offset(0, 8),
             ),

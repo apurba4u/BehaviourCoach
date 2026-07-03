@@ -74,4 +74,9 @@ class AppColors {
   // Primary Fixed
   static const onPrimaryFixed = Color(0xFF001A42);
   static const onPrimaryFixedVariant = Color(0xFF004395);
+
+  // Utility colors
+  static const white = Color(0xFFFFFFFF);
+  static const black = Color(0xFF000000);
+  static const transparent = Color(0x00000000);
 }
