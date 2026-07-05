@@ -38,6 +38,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Route guards for protected routes
 - Auth state management
 
+### Database Layer
+
+- Complete Supabase database schema (10 tables)
+- User profiles with identity levels
+- Behavioral logs with metadata support
+- Daily reflections with mood tracking
+- AI insights with confidence scores
+- Goals with progress tracking
+- Focus sessions with ambient sounds
+- Behavior timeline with event types
+- Notifications with scheduling
+- App settings with JSON values
+- User achievements with unlock dates
+
+### Security
+
+- Row Level Security (RLS) on all tables
+- User isolation policies
+- Storage buckets (avatars, voice recordings, exports)
+- Foreign key relationships
+- Database indexes for performance
+- UpdatedAt triggers
+- User profile auto-creation trigger
+
+### Data Layer
+
+- Entities for all database tables
+- Repository interfaces (abstract)
+- Remote data sources for all tables
+- Supabase query builders
+
 ### Architecture
 
 - Clean Architecture (domain/data/presentation)
