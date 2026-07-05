@@ -120,6 +120,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dashboard use cases (Get, Refresh)
 - Dashboard Riverpod providers
 
+### Focus Session Feature
+
+- Focus Session screen with timer visualization
+- Start, Pause, Resume, End session controls
+- Session Timer with countdown
+- Ambient Sound Selection UI
+- Session completion with score calculation
+- Auto-save to Supabase
+- Offline support with Hive cache
+- Sync to Supabase when online
+- Live session state management
+- Behavioral log creation on session end
+- Dashboard integration for active sessions
+- Focus Session repository with local/remote data sources
+- Focus Session use cases (Start, Pause, Resume, End, GetActive)
+- Focus Session Riverpod providers
+
 ### Architecture
 
 - Clean Architecture (domain/data/presentation)

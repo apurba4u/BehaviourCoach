@@ -1,18 +1,18 @@
 import 'package:hive/hive.dart';
 
 /// Focus Session Hive Adapter
-class FocusSessionAdapter extends TypeAdapter<FocusSession> {
+class FocusSessionAdapter extends TypeAdapter<FocusSessionCache> {
   @override
   final int typeId = 4;
 
   @override
-  FocusSession read(BinaryReader reader) {
+  FocusSessionCache read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{};
     for (var i = 0; i < numOfFields; i++) {
       fields[reader.readByte()] = reader.read();
     }
-    return FocusSession(
+    return FocusSessionCache(
       id: fields[0] as String,
       userId: fields[1] as String,
       title: fields[2] as String?,
@@ -27,14 +27,17 @@ class FocusSessionAdapter extends TypeAdapter<FocusSession> {
       endedAt: fields[11] != null
           ? DateTime.fromMillisecondsSinceEpoch(fields[11] as int)
           : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(fields[12] as int),
+      pausedAt: fields[12] != null
+          ? DateTime.fromMillisecondsSinceEpoch(fields[12] as int)
+          : null,
+      createdAt: DateTime.fromMillisecondsSinceEpoch(fields[13] as int),
     );
   }
 
   @override
-  void write(BinaryWriter writer, FocusSession obj) {
+  void write(BinaryWriter writer, FocusSessionCache obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -60,12 +63,14 @@ class FocusSessionAdapter extends TypeAdapter<FocusSession> {
       ..writeByte(11)
       ..write(obj.endedAt?.millisecondsSinceEpoch)
       ..writeByte(12)
+      ..write(obj.pausedAt?.millisecondsSinceEpoch)
+      ..writeByte(13)
       ..write(obj.createdAt.millisecondsSinceEpoch);
   }
 }
 
 /// Focus Session model for Hive
-class FocusSession {
+class FocusSessionCache {
   final String id;
   final String userId;
   final String? title;
@@ -78,9 +83,10 @@ class FocusSession {
   final int distractionsCount;
   final DateTime startedAt;
   final DateTime? endedAt;
+  final DateTime? pausedAt;
   final DateTime createdAt;
 
-  FocusSession({
+  FocusSessionCache({
     required this.id,
     required this.userId,
     this.title,
@@ -93,6 +99,7 @@ class FocusSession {
     this.distractionsCount = 0,
     required this.startedAt,
     this.endedAt,
+    this.pausedAt,
     required this.createdAt,
   });
 }

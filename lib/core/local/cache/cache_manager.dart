@@ -38,8 +38,8 @@ class CacheManager {
   Box<Goal> get goalBox => _hiveService.getBox<Goal>(HiveService.goalBox);
 
   // Focus Session Cache
-  Box<FocusSession> get focusSessionBox =>
-      _hiveService.getBox<FocusSession>(HiveService.focusSessionBox);
+  Box<FocusSessionCache> get focusSessionBox =>
+      _hiveService.getBox<FocusSessionCache>(HiveService.focusSessionBox);
 
   // AI Insight Cache
   Box<AiInsightCache> get aiInsightBox =>
@@ -140,26 +140,26 @@ class CacheManager {
   }
 
   // Focus Session Methods
-  Future<void> cacheFocusSession(FocusSession session) async {
+  Future<void> cacheFocusSession(FocusSessionCache session) async {
     await focusSessionBox.put(session.id, session);
   }
 
-  FocusSession? getCachedFocusSession(String sessionId) {
+  FocusSessionCache? getCachedFocusSession(String sessionId) {
     return focusSessionBox.get(sessionId);
   }
 
-  List<FocusSession> getCachedFocusSessionsByUser(String userId) {
+  List<FocusSessionCache> getCachedFocusSessionsByUser(String userId) {
     return focusSessionBox.values
-        .where((FocusSession s) => s.userId == userId)
+        .where((FocusSessionCache s) => s.userId == userId)
         .toList();
   }
 
-  List<FocusSession> getCachedFocusSessionsByStatus(
+  List<FocusSessionCache> getCachedFocusSessionsByStatus(
     String userId,
     String status,
   ) {
     return focusSessionBox.values
-        .where((FocusSession s) => s.userId == userId && s.status == status)
+        .where((FocusSessionCache s) => s.userId == userId && s.status == status)
         .toList();
   }
 
@@ -241,8 +241,8 @@ class CacheManager {
     await goalBox.putAll(map);
   }
 
-  Future<void> cacheAllFocusSessions(List<FocusSession> sessions) async {
-    final map = <String, FocusSession>{};
+  Future<void> cacheAllFocusSessions(List<FocusSessionCache> sessions) async {
+    final map = <String, FocusSessionCache>{};
     for (final session in sessions) {
       map[session.id] = session;
     }
