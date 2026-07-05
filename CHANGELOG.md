@@ -25,6 +25,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Riverpod state management setup
 - Feature-first folder structure
 
+### Authentication
+
+- Supabase initialization and configuration
+- Email/Password authentication
+- Google OAuth authentication
+- Sign In screen with form validation
+- Sign Up screen with form validation
+- Auth repository with abstract interface
+- Auth use cases (SignIn, SignUp, SignOut, GetCurrentUser, ResetPassword)
+- Auth providers with Riverpod
+- Route guards for protected routes
+- Auth state management
+
 ### Architecture
 
 - Clean Architecture (domain/data/presentation)
@@ -33,5 +46,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GoRouter for navigation
 - Freezed for immutable models (configured)
 - Hive for local storage (configured)
-- Supabase for backend (configured)
+- Supabase for backend
 - Gemini API for AI (configured)
