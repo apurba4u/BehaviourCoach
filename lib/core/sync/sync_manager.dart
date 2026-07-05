@@ -75,7 +75,8 @@ class SyncManager {
     );
 
     await box.put(pendingOp.id, pendingOp);
-    Logger.info('Added pending operation: $operation for $entityType/$entityId');
+    Logger.info(
+        'Added pending operation: $operation for $entityType/$entityId');
 
     // Try to sync if connected
     if (_connectivityService.isConnected) {

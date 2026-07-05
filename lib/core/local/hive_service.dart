@@ -6,6 +6,7 @@ import 'package:discipline_os/core/local/adapters/daily_reflection_adapter.dart'
 import 'package:discipline_os/core/local/adapters/focus_session_adapter.dart';
 import 'package:discipline_os/core/local/adapters/goal_adapter.dart';
 import 'package:discipline_os/core/local/adapters/pending_operation_adapter.dart';
+import 'package:discipline_os/core/local/adapters/ai_coach_adapter.dart';
 import 'package:discipline_os/core/local/adapters/user_profile_adapter.dart';
 import 'package:discipline_os/core/utils/logger.dart';
 
@@ -30,6 +31,7 @@ class HiveService {
   static const String aiInsightBox = 'ai_insights';
   static const String appSettingBox = 'app_settings';
   static const String pendingOperationBox = 'pending_operations';
+  static const String aiCoachConversationBox = 'ai_coach_conversations';
 
   /// Initialize Hive with all adapters
   Future<void> init() async {
@@ -47,7 +49,8 @@ class HiveService {
         ..registerAdapter(FocusSessionAdapter())
         ..registerAdapter(AiInsightAdapter())
         ..registerAdapter(AppSettingAdapter())
-        ..registerAdapter(PendingOperationAdapter());
+        ..registerAdapter(PendingOperationAdapter())
+        ..registerAdapter(AiCoachConversationAdapter());
 
       // Open boxes
       await Future.wait([
@@ -59,6 +62,7 @@ class HiveService {
         Hive.openBox<AiInsightCache>(aiInsightBox),
         Hive.openBox<AppSetting>(appSettingBox),
         Hive.openBox<PendingOperation>(pendingOperationBox),
+        Hive.openBox<AiCoachConversationCache>(aiCoachConversationBox),
       ]);
 
       _initialized = true;
@@ -91,6 +95,7 @@ class HiveService {
       Hive.box<AiInsightCache>(aiInsightBox).clear(),
       Hive.box<AppSetting>(appSettingBox).clear(),
       Hive.box<PendingOperation>(pendingOperationBox).clear(),
+      Hive.box<AiCoachConversationCache>(aiCoachConversationBox).clear(),
     ]);
   }
 }

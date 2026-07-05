@@ -23,7 +23,8 @@ class AiResponse extends Equatable {
   bool get isValidJson => parsedData != null;
 
   @override
-  List<Object?> get props => [content, rawContent, parsedData, timestamp, model];
+  List<Object?> get props =>
+      [content, rawContent, parsedData, timestamp, model];
 }
 
 /// AI Parsed Response with typed data

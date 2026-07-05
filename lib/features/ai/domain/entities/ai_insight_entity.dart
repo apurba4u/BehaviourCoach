@@ -55,7 +55,8 @@ class AiRecommendation extends Equatable {
   });
 
   @override
-  List<Object?> get props => [action, reason, priority, expectedImpact, timeEstimate];
+  List<Object?> get props =>
+      [action, reason, priority, expectedImpact, timeEstimate];
 }
 
 /// AI Pattern Entity
@@ -77,7 +78,8 @@ class AiPattern extends Equatable {
   });
 
   @override
-  List<Object?> get props => [pattern, type, frequency, confidence, impact, evidence];
+  List<Object?> get props =>
+      [pattern, type, frequency, confidence, impact, evidence];
 }
 
 /// AI Summary Entity

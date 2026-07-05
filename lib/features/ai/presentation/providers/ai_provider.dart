@@ -15,8 +15,7 @@ import 'package:discipline_os/features/ai/domain/usecases/generate_weekly_summar
 
 /// Gemini Service Provider
 final geminiServiceProvider = Provider<GeminiService>((ref) {
-  final service = GeminiService()
-    ..initialize();
+  final service = GeminiService()..initialize();
   ref.onDispose(service.dispose);
   return service;
 });
@@ -55,13 +54,15 @@ final generateWeeklySummaryProvider = Provider<GenerateWeeklySummary>((ref) {
 });
 
 /// Analyze Behavior Patterns Provider
-final analyzeBehaviorPatternsProvider = Provider<AnalyzeBehaviorPatterns>((ref) {
+final analyzeBehaviorPatternsProvider =
+    Provider<AnalyzeBehaviorPatterns>((ref) {
   final repository = ref.watch(aiRepositoryProvider);
   return AnalyzeBehaviorPatterns(repository);
 });
 
 /// Generate Recommendations Provider
-final generateRecommendationsProvider = Provider<GenerateRecommendations>((ref) {
+final generateRecommendationsProvider =
+    Provider<GenerateRecommendations>((ref) {
   final repository = ref.watch(aiRepositoryProvider);
   return GenerateRecommendations(repository);
 });

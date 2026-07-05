@@ -137,6 +137,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Focus Session use cases (Start, Pause, Resume, End, GetActive)
 - Focus Session Riverpod providers
 
+### Daily Reflection Feature
+
+- Daily Reflection screen with mood tracking
+- Mood selector (5 mood options)
+- Energy level slider
+- Free writing area for journaling
+- Voice reflection button
+- AI Synthesis card with insights
+- Reflection History timeline
+- Morning Intention card (completed state)
+- Evening Reflection card (active state)
+- Daily Reflection repository with Hive cache and Supabase sync
+- Daily Reflection use cases (Create, Get, Update, Delete)
+- Daily Reflection Riverpod providers
+
+### AI Coach Feature
+
+- AI Coach screen with chat interface
+- Pattern Discovery card (AI-detected behavioral patterns)
+- Tomorrow's Micro-Challenge card
+- Distraction Heatmap visualization
+- Daily Pulse card (reflection summary)
+- Consistency Flow chart
+- Quick Actions (Ask AI Coach, Quick Reflection)
+- AI Coach conversation with Gemini integration
+- AI Coach repository with Hive cache and Supabase sync
+- AI Coach use cases (StartConversation, SendMessage, GetHistory)
+- AI Coach Riverpod providers
+
 ### Architecture
 
 - Clean Architecture (domain/data/presentation)

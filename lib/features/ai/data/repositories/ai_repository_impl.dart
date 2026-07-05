@@ -62,16 +62,17 @@ class AiRepositoryImpl implements AiRepository {
         variables: userData,
       );
 
-      return Right(AiInsight(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        type: 'daily_insight',
-        title: _asString(result['title'], 'Daily Insight'),
-        insight: _asString(result['insight']),
-        actionableTip: result['actionable_tip']?.toString(),
-        confidence: _asDouble(result['confidence']),
-        category: _asString(result['category'], 'general'),
-        generatedAt: DateTime.now(),
-      ),
+      return Right(
+        AiInsight(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          type: 'daily_insight',
+          title: _asString(result['title'], 'Daily Insight'),
+          insight: _asString(result['insight']),
+          actionableTip: result['actionable_tip']?.toString(),
+          confidence: _asDouble(result['confidence']),
+          category: _asString(result['category'], 'general'),
+          generatedAt: DateTime.now(),
+        ),
       );
     } catch (e) {
       return Left(_handleException(e));
@@ -113,16 +114,16 @@ class AiRepositoryImpl implements AiRepository {
         );
       }).toList();
 
-      return Right(AiSummary(
-        summary: _asString(result['summary']),
-        highlights: _asStringList(result['highlights']),
-        challenges: _asStringList(result['challenges']),
-        patterns: patterns,
-        recommendations: recommendations,
-        scoreTrend: _asString(result['score_trend'], 'stable'),
-        consistencyPercentage:
-            _asDouble(result['consistency_percentage']),
-      ),
+      return Right(
+        AiSummary(
+          summary: _asString(result['summary']),
+          highlights: _asStringList(result['highlights']),
+          challenges: _asStringList(result['challenges']),
+          patterns: patterns,
+          recommendations: recommendations,
+          scoreTrend: _asString(result['score_trend'], 'stable'),
+          consistencyPercentage: _asDouble(result['consistency_percentage']),
+        ),
       );
     } catch (e) {
       return Left(_handleException(e));
@@ -221,12 +222,13 @@ class AiRepositoryImpl implements AiRepository {
       // Add immediate action
       if (result['immediate_action'] != null) {
         final action = result['immediate_action'] as Map<String, dynamic>;
-        recommendations.add(AiRecommendation(
-          action: _asString(action['what']),
-          reason: _asString(action['why']),
-          priority: 'high',
-          expectedImpact: action['expected_benefit']?.toString(),
-        ),
+        recommendations.add(
+          AiRecommendation(
+            action: _asString(action['what']),
+            reason: _asString(action['why']),
+            priority: 'high',
+            expectedImpact: action['expected_benefit']?.toString(),
+          ),
         );
       }
 
@@ -234,12 +236,13 @@ class AiRepositoryImpl implements AiRepository {
       final todayRecs = result['today_recommendations'] as List<dynamic>? ?? [];
       for (final r in todayRecs) {
         final rec = r as Map<String, dynamic>;
-        recommendations.add(AiRecommendation(
-          action: _asString(rec['action']),
-          reason: _asString(rec['basis']),
-          priority: _asString(rec['priority'], 'medium'),
-          timeEstimate: rec['time_estimate']?.toString(),
-        ),
+        recommendations.add(
+          AiRecommendation(
+            action: _asString(rec['action']),
+            reason: _asString(rec['basis']),
+            priority: _asString(rec['priority'], 'medium'),
+            timeEstimate: rec['time_estimate']?.toString(),
+          ),
         );
       }
 

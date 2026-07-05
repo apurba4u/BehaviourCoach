@@ -92,10 +92,10 @@ class _FocusSessionScreenState extends ConsumerState<FocusSessionScreen> {
 
                     const SizedBox(height: 100),
                   ],
-                  ),
                 ),
               ),
-            ],
+            ),
+          ],
         ),
       ),
     );

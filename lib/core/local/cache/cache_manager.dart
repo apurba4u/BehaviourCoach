@@ -4,6 +4,7 @@ import 'package:discipline_os/core/local/adapters/ai_insight_adapter.dart';
 import 'package:discipline_os/core/local/adapters/app_setting_adapter.dart';
 import 'package:discipline_os/core/local/adapters/behavioral_log_adapter.dart';
 import 'package:discipline_os/core/local/adapters/daily_reflection_adapter.dart';
+import 'package:discipline_os/core/local/adapters/ai_coach_adapter.dart';
 import 'package:discipline_os/core/local/adapters/focus_session_adapter.dart';
 import 'package:discipline_os/core/local/adapters/goal_adapter.dart';
 import 'package:discipline_os/core/local/adapters/user_profile_adapter.dart';
@@ -48,6 +49,12 @@ class CacheManager {
   // App Setting Cache
   Box<AppSetting> get appSettingBox =>
       _hiveService.getBox<AppSetting>(HiveService.appSettingBox);
+
+  // AI Coach Conversation Cache
+  Box<AiCoachConversationCache> get aiCoachConversationBox =>
+      _hiveService.getBox<AiCoachConversationCache>(
+        HiveService.aiCoachConversationBox,
+      );
 
   // User Profile Methods
   Future<void> cacheUserProfile(UserProfile profile) async {
@@ -159,7 +166,8 @@ class CacheManager {
     String status,
   ) {
     return focusSessionBox.values
-        .where((FocusSessionCache s) => s.userId == userId && s.status == status)
+        .where(
+            (FocusSessionCache s) => s.userId == userId && s.status == status)
         .toList();
   }
 
@@ -204,6 +212,32 @@ class CacheManager {
   Future<void> deleteAppSetting(String userId, String settingKey) async {
     final key = '${userId}_$settingKey';
     await appSettingBox.delete(key);
+  }
+
+  // AI Coach Conversation Methods
+  Future<void> cacheAiCoachConversation(
+    AiCoachConversationCache conversation,
+  ) async {
+    await aiCoachConversationBox.put(conversation.id, conversation);
+    Logger.info('Cached AI coach conversation: ${conversation.id}');
+  }
+
+  AiCoachConversationCache? getCachedAiCoachConversation(
+    String conversationId,
+  ) {
+    return aiCoachConversationBox.get(conversationId);
+  }
+
+  List<AiCoachConversationCache> getCachedAiCoachConversationsByUser(
+    String userId,
+  ) {
+    return aiCoachConversationBox.values
+        .where((AiCoachConversationCache c) => c.userId == userId)
+        .toList();
+  }
+
+  Future<void> deleteAiCoachConversation(String conversationId) async {
+    await aiCoachConversationBox.delete(conversationId);
   }
 
   // Bulk Operations
@@ -255,5 +289,15 @@ class CacheManager {
       map[insight.id] = insight;
     }
     await aiInsightBox.putAll(map);
+  }
+
+  Future<void> cacheAllAiCoachConversations(
+    List<AiCoachConversationCache> conversations,
+  ) async {
+    final map = <String, AiCoachConversationCache>{};
+    for (final conversation in conversations) {
+      map[conversation.id] = conversation;
+    }
+    await aiCoachConversationBox.putAll(map);
   }
 }
