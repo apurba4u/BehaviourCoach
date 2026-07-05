@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:discipline_os/core/errors/failure.dart';
 import 'package:discipline_os/features/auth/domain/entities/user_entity.dart';
 import 'package:discipline_os/features/auth/domain/repositories/auth_repository.dart';
+import 'package:equatable/equatable.dart';
 
 /// Sign In With Email Use Case
 class SignInWithEmail {

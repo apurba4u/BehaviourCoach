@@ -40,10 +40,7 @@ class GoalRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('goals')
-        .select()
-        .eq('user_id', userId);
+    var query = _client.from('goals').select().eq('user_id', userId);
 
     if (status != null) {
       query = query.eq('status', status);
@@ -59,11 +56,8 @@ class GoalRemoteDataSource {
   }
 
   Future<Map<String, dynamic>> getGoalById(String goalId) async {
-    final response = await _client
-        .from('goals')
-        .select()
-        .eq('id', goalId)
-        .single();
+    final response =
+        await _client.from('goals').select().eq('id', goalId).single();
     return response;
   }
 
@@ -87,7 +81,9 @@ class GoalRemoteDataSource {
     if (unit != null) updates['unit'] = unit;
     if (status != null) updates['status'] = status;
     if (deadline != null) updates['deadline'] = deadline.toIso8601String();
-    if (status == 'completed') updates['completed_at'] = DateTime.now().toIso8601String();
+    if (status == 'completed') {
+      updates['completed_at'] = DateTime.now().toIso8601String();
+    }
 
     final response = await _client
         .from('goals')

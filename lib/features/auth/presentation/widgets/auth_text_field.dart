@@ -13,9 +13,9 @@ class AuthTextField extends StatelessWidget {
   final String? Function(String?)? validator;
 
   const AuthTextField({
-    super.key,
     required this.controller,
     required this.label,
+    super.key,
     this.prefixIcon,
     this.suffixIcon,
     this.obscureText = false,

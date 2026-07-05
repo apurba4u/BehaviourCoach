@@ -37,10 +37,7 @@ class BehavioralLogRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('behavioral_logs')
-        .select()
-        .eq('user_id', userId);
+    var query = _client.from('behavioral_logs').select().eq('user_id', userId);
 
     if (logType != null) {
       query = query.eq('log_type', logType);
@@ -59,11 +56,8 @@ class BehavioralLogRemoteDataSource {
   }
 
   Future<Map<String, dynamic>> getLogById(String logId) async {
-    final response = await _client
-        .from('behavioral_logs')
-        .select()
-        .eq('id', logId)
-        .single();
+    final response =
+        await _client.from('behavioral_logs').select().eq('id', logId).single();
     return response;
   }
 

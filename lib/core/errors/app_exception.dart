@@ -11,31 +11,19 @@ abstract class AppException implements Exception {
 }
 
 class ServerException extends AppException {
-  const ServerException({
-    required super.message,
-    super.code,
-  });
+  const ServerException({required super.message, super.code});
 }
 
 class CacheException extends AppException {
-  const CacheException({
-    required super.message,
-    super.code,
-  });
+  const CacheException({required super.message, super.code});
 }
 
 class NetworkException extends AppException {
-  const NetworkException({
-    required super.message,
-    super.code,
-  });
+  const NetworkException({required super.message, super.code});
 }
 
 class AuthenticationException extends AppException {
-  const AuthenticationException({
-    required super.message,
-    super.code,
-  });
+  const AuthenticationException({required super.message, super.code});
 }
 
 class ValidationException extends AppException {
@@ -49,8 +37,5 @@ class ValidationException extends AppException {
 }
 
 class AIException extends AppException {
-  const AIException({
-    required super.message,
-    super.code,
-  });
+  const AIException({required super.message, super.code});
 }

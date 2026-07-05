@@ -22,10 +22,8 @@ class AppSettingRemoteDataSource {
   }
 
   Future<List<Map<String, dynamic>>> getAllSettings(String userId) async {
-    final response = await _client
-        .from('app_settings')
-        .select()
-        .eq('user_id', userId);
+    final response =
+        await _client.from('app_settings').select().eq('user_id', userId);
     return response;
   }
 

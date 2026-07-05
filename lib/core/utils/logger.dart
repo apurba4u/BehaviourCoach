@@ -8,11 +8,7 @@ class Logger {
 
   static final _logger = log.Logger(
     printer: log.PrettyPrinter(
-      methodCount: 2,
-      errorMethodCount: 5,
       lineLength: 80,
-      colors: true,
-      printEmojis: true,
     ),
     level: kReleaseMode ? log.Level.off : log.Level.debug,
   );

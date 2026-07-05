@@ -85,9 +85,9 @@ class GlassCardSkeleton extends StatelessWidget {
         children: [
           LoadingSkeleton(width: 120, height: 16),
           SizedBox(height: 16),
-          LoadingSkeleton(width: double.infinity, height: 24),
+          LoadingSkeleton(height: 24),
           SizedBox(height: 8),
-          LoadingSkeleton(width: double.infinity, height: 16),
+          LoadingSkeleton(height: 16),
           SizedBox(height: 8),
           LoadingSkeleton(width: 200, height: 16),
         ],

@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:discipline_os/core/theme/app_colors.dart';
 import 'package:discipline_os/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,8 @@ class GlassCard extends StatelessWidget {
   final Border? border;
 
   const GlassCard({
-    super.key,
     required this.child,
+    super.key,
     this.padding,
     this.margin,
     this.borderRadius,
@@ -40,7 +41,6 @@ class GlassCard extends StatelessWidget {
         border: border ??
             Border.all(
               color: AppColors.outline.withValues(alpha: 0.15),
-              width: 1,
             ),
         boxShadow: showGlow
             ? [

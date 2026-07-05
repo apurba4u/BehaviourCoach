@@ -1,29 +1,30 @@
 import 'dart:math';
+
 import 'package:discipline_os/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /// DisciplineOS Aura Ring Component
 /// Circular progress indicator with glow effect
 class AuraRing extends StatelessWidget {
-  final double value; // 0.0 to 1.0
+  final double value;
+  final Widget? child;
+  final bool showGlow;
   final double size;
   final double strokeWidth;
   final Color color;
   final Color glowColor;
   final Color backgroundColor;
-  final Widget? child;
-  final bool showGlow;
 
   const AuraRing({
-    super.key,
     required this.value,
+    super.key,
+    this.child,
+    this.showGlow = true,
     this.size = 256,
     this.strokeWidth = 4,
     this.color = AppColors.primary,
     this.glowColor = AppColors.primary,
     this.backgroundColor = AppColors.outline,
-    this.child,
-    this.showGlow = true,
   });
 
   @override
@@ -70,7 +71,7 @@ class _RingPainter extends CustomPainter {
   final Color color;
   final Color backgroundColor;
 
-  _RingPainter({
+  const _RingPainter({
     required this.value,
     required this.strokeWidth,
     required this.color,

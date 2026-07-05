@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:discipline_os/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:discipline_os/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:discipline_os/features/auth/domain/entities/user_entity.dart';
@@ -7,6 +6,7 @@ import 'package:discipline_os/features/auth/domain/usecases/get_current_user.dar
 import 'package:discipline_os/features/auth/domain/usecases/sign_in_with_email.dart';
 import 'package:discipline_os/features/auth/domain/usecases/sign_out.dart';
 import 'package:discipline_os/features/auth/domain/usecases/sign_up_with_email.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Auth Remote Data Source Provider
 final authRemoteDataSourceProvider = Provider<AuthRemoteDataSource>((ref) {
@@ -121,13 +121,15 @@ class AuthNotifier extends StateNotifier<AuthState> {
 }
 
 /// Auth Notifier Provider
-final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-  final signInWithEmail = ref.watch(signInWithEmailProvider);
-  final signUpWithEmail = ref.watch(signUpWithEmailProvider);
-  final signOut = ref.watch(signOutProvider);
-  return AuthNotifier(
-    signInWithEmail: signInWithEmail,
-    signUpWithEmail: signUpWithEmail,
-    signOut: signOut,
-  );
-});
+final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>(
+  (ref) {
+    final signInWithEmail = ref.watch(signInWithEmailProvider);
+    final signUpWithEmail = ref.watch(signUpWithEmailProvider);
+    final signOut = ref.watch(signOutProvider);
+    return AuthNotifier(
+      signInWithEmail: signInWithEmail,
+      signUpWithEmail: signUpWithEmail,
+      signOut: signOut,
+    );
+  },
+);

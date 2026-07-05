@@ -39,10 +39,8 @@ class DailyReflectionRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('daily_reflections')
-        .select()
-        .eq('user_id', userId);
+    var query =
+        _client.from('daily_reflections').select().eq('user_id', userId);
 
     if (reflectionType != null) {
       query = query.eq('reflection_type', reflectionType);

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2026-07-03
 
+### Code Quality
+
+- Resolved all analyzer issues (0 errors, 0 warnings, 0 infos)
+- Updated Supabase SDK to use `publishableKey` instead of deprecated `anonKey`
+- Removed redundant default values
+- Added missing trailing commas
+- Added curly braces to control flow statements
+- Applied dart format to all files
+- Updated analysis_options.yaml with clean lint rules
+
 ### Added
 
 - Flutter project initialization with Clean Architecture

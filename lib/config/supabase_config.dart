@@ -1,5 +1,5 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:discipline_os/config/env_config.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// DisciplineOS Supabase Configuration
 class SupabaseConfig {
@@ -9,7 +9,9 @@ class SupabaseConfig {
 
   static SupabaseClient get client {
     if (_client == null) {
-      throw StateError('Supabase not initialized. Call SupabaseConfig.init() first.');
+      throw StateError(
+        'Supabase not initialized. Call SupabaseConfig.init() first.',
+      );
     }
     return _client!;
   }
@@ -19,13 +21,13 @@ class SupabaseConfig {
   static Future<void> init() async {
     await Supabase.initialize(
       url: EnvConfig.supabaseUrl,
-      anonKey: EnvConfig.supabaseAnonKey,
+      publishableKey: EnvConfig.supabaseAnonKey,
     );
     _client = Supabase.instance.client;
   }
 
   static Future<void> dispose() async {
-    _client?.dispose();
+    await _client?.dispose();
     _client = null;
   }
 }

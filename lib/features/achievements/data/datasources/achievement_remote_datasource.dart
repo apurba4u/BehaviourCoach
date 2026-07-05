@@ -37,10 +37,8 @@ class AchievementRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('user_achievements')
-        .select()
-        .eq('user_id', userId);
+    var query =
+        _client.from('user_achievements').select().eq('user_id', userId);
 
     if (achievementType != null) {
       query = query.eq('achievement_type', achievementType);

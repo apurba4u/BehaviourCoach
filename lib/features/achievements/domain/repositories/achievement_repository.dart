@@ -20,5 +20,7 @@ abstract class AchievementRepository {
     int? offset,
   });
 
-  Future<Either<Failure, AchievementEntity>> getAchievementById(String achievementId);
+  Future<Either<Failure, AchievementEntity>> getAchievementById(
+    String achievementId,
+  );
 }

@@ -1,6 +1,6 @@
+import 'package:discipline_os/config/route_config.dart';
 import 'package:discipline_os/core/theme/app_theme.dart';
 import 'package:discipline_os/core/widgets/error_boundary.dart';
-import 'package:discipline_os/config/route_config.dart';
 import 'package:flutter/material.dart';
 
 /// DisciplineOS Application

@@ -1,5 +1,5 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:discipline_os/config/supabase_config.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// DisciplineOS Auth Remote Data Source
 class AuthRemoteDataSource {
@@ -13,6 +13,12 @@ class AuthRemoteDataSource {
   User? get currentUser => _auth.currentUser;
 
   Session? get currentSession => _auth.currentSession;
+
+  Stream<AuthState> get authStateChanges => _auth.onAuthStateChange;
+
+  User? getUser() {
+    return _auth.currentUser;
+  }
 
   Future<User> signInWithEmail({
     required String email,
@@ -57,12 +63,6 @@ class AuthRemoteDataSource {
   Future<void> signOut() async {
     await _auth.signOut();
   }
-
-  User? getUser() {
-    return _auth.currentUser;
-  }
-
-  Stream<AuthState> get authStateChanges => _auth.onAuthStateChange;
 
   Future<void> resetPassword(String email) async {
     await _auth.resetPasswordForEmail(email);

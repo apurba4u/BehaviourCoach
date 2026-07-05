@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:discipline_os/core/errors/failure.dart';
 import 'package:discipline_os/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:discipline_os/features/auth/domain/entities/user_entity.dart';
 import 'package:discipline_os/features/auth/domain/repositories/auth_repository.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// DisciplineOS Auth Repository Implementation
 class AuthRepositoryImpl implements AuthRepository {
@@ -16,10 +16,11 @@ class AuthRepositoryImpl implements AuthRepository {
     return UserEntity(
       id: user.id,
       email: user.email ?? '',
+      createdAt: DateTime.parse(user.createdAt),
       displayName: user.userMetadata?['display_name'] as String?,
       avatarUrl: user.userMetadata?['avatar_url'] as String?,
-      identityLevel: user.userMetadata?['identity_level'] as String? ?? 'novice',
-      createdAt: DateTime.parse(user.createdAt),
+      identityLevel:
+          user.userMetadata?['identity_level'] as String? ?? 'novice',
     );
   }
 

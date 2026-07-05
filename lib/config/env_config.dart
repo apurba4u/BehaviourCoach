@@ -14,6 +14,6 @@ class EnvConfig {
   static bool get isProduction => appEnv == 'production';
 
   static Future<void> init() async {
-    await dotenv.load(fileName: '.env');
+    await dotenv.load();
   }
 }

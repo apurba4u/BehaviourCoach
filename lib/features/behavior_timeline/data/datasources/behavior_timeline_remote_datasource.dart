@@ -41,10 +41,8 @@ class BehaviorTimelineRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('behavior_timeline')
-        .select()
-        .eq('user_id', userId);
+    var query =
+        _client.from('behavior_timeline').select().eq('user_id', userId);
 
     if (eventType != null) {
       query = query.eq('event_type', eventType);

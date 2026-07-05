@@ -90,10 +90,7 @@ class FocusSessionRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('focus_sessions')
-        .select()
-        .eq('user_id', userId);
+    var query = _client.from('focus_sessions').select().eq('user_id', userId);
 
     if (status != null) {
       query = query.eq('status', status);

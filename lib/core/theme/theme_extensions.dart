@@ -87,8 +87,9 @@ class DisciplineTokens extends ThemeExtension<DisciplineTokens> {
     );
   }
 
-  static DisciplineTokens of(BuildContext context) {
-    return Theme.of(context).extension<DisciplineTokens>() ?? const DisciplineTokens();
+  factory DisciplineTokens.of(BuildContext context) {
+    return Theme.of(context).extension<DisciplineTokens>() ??
+        const DisciplineTokens();
   }
 }
 

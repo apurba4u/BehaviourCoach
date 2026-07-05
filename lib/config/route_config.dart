@@ -1,15 +1,40 @@
+import 'package:discipline_os/config/supabase_config.dart';
 import 'package:discipline_os/core/widgets/floating_dock.dart';
+import 'package:discipline_os/features/auth/presentation/screens/sign_in_screen.dart';
+import 'package:discipline_os/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 /// DisciplineOS Route Configuration
-/// GoRouter setup with shell route for bottom navigation
 class RouteConfig {
   RouteConfig._();
 
   static final router = GoRouter(
-    initialLocation: '/insights',
+    initialLocation: '/sign-in',
+    redirect: (context, state) {
+      final session = SupabaseConfig.auth.currentSession;
+      final isAuthRoute = state.matchedLocation == '/sign-in' ||
+          state.matchedLocation == '/sign-up';
+
+      if (session == null && !isAuthRoute) {
+        return '/sign-in';
+      }
+
+      if (session != null && isAuthRoute) {
+        return '/insights';
+      }
+
+      return null;
+    },
     routes: [
+      GoRoute(
+        path: '/sign-in',
+        builder: (context, state) => const SignInScreen(),
+      ),
+      GoRoute(
+        path: '/sign-up',
+        builder: (context, state) => const SignUpScreen(),
+      ),
       ShellRoute(
         builder: (context, state, child) {
           return ScaffoldWithDock(child: child);
@@ -41,12 +66,13 @@ class RouteConfig {
 
 class ScaffoldWithDock extends StatelessWidget {
   final Widget child;
+
   const ScaffoldWithDock({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
-    int currentIndex = 0;
+    var currentIndex = 0;
     if (location.startsWith('/coach')) currentIndex = 1;
     if (location.startsWith('/reflections')) currentIndex = 2;
 
@@ -76,6 +102,7 @@ class ScaffoldWithDock extends StatelessWidget {
 
 class _PlaceholderScreen extends StatelessWidget {
   final String title;
+
   const _PlaceholderScreen({required this.title});
 
   @override

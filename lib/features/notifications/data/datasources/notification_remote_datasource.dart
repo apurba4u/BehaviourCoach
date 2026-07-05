@@ -40,10 +40,7 @@ class NotificationRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('notifications')
-        .select()
-        .eq('user_id', userId);
+    var query = _client.from('notifications').select().eq('user_id', userId);
 
     if (isRead != null) {
       query = query.eq('is_read', isRead);

@@ -1,5 +1,5 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:discipline_os/config/supabase_config.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// User Profile Remote Data Source
 class UserProfileRemoteDataSource {
@@ -9,11 +9,8 @@ class UserProfileRemoteDataSource {
       : _client = client ?? SupabaseConfig.client;
 
   Future<Map<String, dynamic>> getProfile(String userId) async {
-    final response = await _client
-        .from('user_profiles')
-        .select()
-        .eq('id', userId)
-        .single();
+    final response =
+        await _client.from('user_profiles').select().eq('id', userId).single();
     return response;
   }
 

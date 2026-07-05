@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:discipline_os/core/theme/app_colors.dart';
 import 'package:discipline_os/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,10 @@ class FloatingDock extends StatelessWidget {
   final ValueChanged<int> onTap;
 
   const FloatingDock({
-    super.key,
     required this.currentIndex,
     required this.items,
     required this.onTap,
+    super.key,
   });
 
   @override
@@ -30,7 +31,6 @@ class FloatingDock extends StatelessWidget {
           borderRadius: BorderRadius.circular(tokens.borderRadiusFull),
           border: Border.all(
             color: AppColors.white.withValues(alpha: 0.1),
-            width: 1,
           ),
           boxShadow: [
             BoxShadow(

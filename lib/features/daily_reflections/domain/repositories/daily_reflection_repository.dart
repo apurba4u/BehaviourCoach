@@ -22,7 +22,9 @@ abstract class DailyReflectionRepository {
     int? offset,
   });
 
-  Future<Either<Failure, DailyReflectionEntity>> getReflectionById(String reflectionId);
+  Future<Either<Failure, DailyReflectionEntity>> getReflectionById(
+    String reflectionId,
+  );
 
   Future<Either<Failure, DailyReflectionEntity>> updateReflection({
     required String reflectionId,

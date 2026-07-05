@@ -8,8 +8,8 @@ class ErrorBoundary extends StatefulWidget {
   final Widget Function(Object error, StackTrace stack)? errorBuilder;
 
   const ErrorBoundary({
-    super.key,
     required this.child,
+    super.key,
     this.errorBuilder,
   });
 

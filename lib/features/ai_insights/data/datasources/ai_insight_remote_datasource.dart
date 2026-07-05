@@ -39,10 +39,7 @@ class AiInsightRemoteDataSource {
     int? limit,
     int? offset,
   }) async {
-    var query = _client
-        .from('ai_insights')
-        .select()
-        .eq('user_id', userId);
+    var query = _client.from('ai_insights').select().eq('user_id', userId);
 
     if (insightType != null) {
       query = query.eq('insight_type', insightType);
@@ -61,11 +58,8 @@ class AiInsightRemoteDataSource {
   }
 
   Future<Map<String, dynamic>> getInsightById(String insightId) async {
-    final response = await _client
-        .from('ai_insights')
-        .select()
-        .eq('id', insightId)
-        .single();
+    final response =
+        await _client.from('ai_insights').select().eq('id', insightId).single();
     return response;
   }
 
