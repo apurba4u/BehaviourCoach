@@ -9,23 +9,27 @@ class ActiveFocusSessionCard extends StatelessWidget {
   final String? title;
   final int? minutesRemaining;
   final bool isActive;
+  final VoidCallback? onTap;
 
   const ActiveFocusSessionCard({
     super.key,
     this.title,
     this.minutesRemaining,
     this.isActive = false,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     if (!isActive) return const SizedBox.shrink();
 
-    return GlassCard(
-      showGlow: true,
-      glowColor: AppColors.primary,
-      padding: const EdgeInsets.all(20),
-      child: Row(
+    return GestureDetector(
+      onTap: onTap,
+      child: GlassCard(
+        showGlow: true,
+        glowColor: AppColors.primary,
+        padding: const EdgeInsets.all(20),
+        child: Row(
         children: [
           Container(
             width: 48,
@@ -83,6 +87,7 @@ class ActiveFocusSessionCard extends StatelessWidget {
               ),
             ),
         ],
+      ),
       ),
     );
   }

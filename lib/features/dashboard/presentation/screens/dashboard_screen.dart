@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:discipline_os/core/theme/app_colors.dart';
 import 'package:discipline_os/core/theme/app_typography.dart';
 import 'package:discipline_os/core/theme/theme_extensions.dart';
@@ -159,9 +160,20 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     final data = state.data;
     final isLoading = state.state == DashboardState.loading;
     final isError = state.state == DashboardState.error;
+    final isEmpty = state.state == DashboardState.initial ||
+        (state.state == DashboardState.loaded && data == null);
 
     if (isError) {
       return _buildErrorState(state.error ?? 'Failed to load dashboard');
+    }
+
+    if (isLoading && data == null) {
+      return Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: tokens.marginMobile),
+          child: const CircularProgressIndicator(),
+        ),
+      );
     }
 
     return Padding(
@@ -174,7 +186,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             changeText: data != null
                 ? 'Your consistency is ${data.momentumScore > 0 ? "+" : ""}${data.momentumScore}% compared to last week.'
                 : '',
-            isEmpty: data == null && !isLoading,
+            isEmpty: isEmpty,
           ),
           const SizedBox(height: 48),
           AiInsightCard(
@@ -191,6 +203,19 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 title: data?.activeFocusSessionTitle,
                 minutesRemaining: data?.activeFocusSessionMinutesRemaining,
                 isActive: true,
+                onTap: () => context.push('/focus-session'),
+              ),
+            ),
+          if (data?.hasActiveFocusSession != true)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () => context.push('/focus-session'),
+                  icon: const Icon(Icons.play_arrow),
+                  label: const Text('Start Focus Session'),
+                ),
               ),
             ),
           Row(
@@ -198,14 +223,14 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               Expanded(
                 child: MomentumCard(
                   momentumScore: data?.momentumScore ?? 0,
-                  isEmpty: data == null,
+                  isEmpty: isEmpty,
                 ),
               ),
               const SizedBox(width: 24),
               Expanded(
                 child: WeeklyAuditCard(
                   consistencyPercentage: data?.weeklyConsistency ?? 0,
-                  isEmpty: data == null,
+                  isEmpty: isEmpty,
                 ),
               ),
             ],

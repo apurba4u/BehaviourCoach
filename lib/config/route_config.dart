@@ -5,6 +5,7 @@ import 'package:discipline_os/features/auth/presentation/screens/sign_up_screen.
 import 'package:discipline_os/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:discipline_os/features/ai_coach/presentation/screens/ai_coach_screen.dart';
 import 'package:discipline_os/features/daily_reflection/presentation/screens/daily_reflection_screen.dart';
+import 'package:discipline_os/features/focus_session/presentation/screens/focus_session_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,6 +63,10 @@ class RouteConfig {
             ),
           ),
         ],
+      ),
+      GoRoute(
+        path: '/focus-session',
+        builder: (context, state) => const FocusSessionScreen(),
       ),
     ],
   );

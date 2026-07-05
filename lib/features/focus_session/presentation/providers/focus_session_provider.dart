@@ -9,6 +9,7 @@ import 'package:discipline_os/features/focus_session/domain/usecases/pause_focus
 import 'package:discipline_os/features/focus_session/domain/usecases/resume_focus_session.dart';
 import 'package:discipline_os/features/focus_session/domain/usecases/end_focus_session.dart';
 import 'package:discipline_os/features/focus_session/domain/usecases/get_active_session.dart';
+import 'package:discipline_os/features/dashboard/presentation/providers/dashboard_provider.dart';
 
 /// Focus Session Repository Provider
 final focusSessionRepositoryProvider = Provider<FocusSessionRepository>((ref) {
@@ -97,6 +98,7 @@ class FocusSessionNotifier extends StateNotifier<FocusSessionDataState> {
   final ResumeFocusSession _resumeSession;
   final EndFocusSession _endSession;
   final GetActiveSession _getActiveSession;
+  final Ref _ref;
 
   FocusSessionNotifier({
     required StartFocusSession startSession,
@@ -104,11 +106,13 @@ class FocusSessionNotifier extends StateNotifier<FocusSessionDataState> {
     required ResumeFocusSession resumeSession,
     required EndFocusSession endSession,
     required GetActiveSession getActiveSession,
+    required Ref ref,
   })  : _startSession = startSession,
         _pauseSession = pauseSession,
         _resumeSession = resumeSession,
         _endSession = endSession,
         _getActiveSession = getActiveSession,
+        _ref = ref,
         super(const FocusSessionDataState());
 
   /// Start a new focus session
@@ -152,9 +156,11 @@ class FocusSessionNotifier extends StateNotifier<FocusSessionDataState> {
       ),
       (session) {
         state = state.copyWith(
-          state: FocusSessionState.paused,
+          state: FocusSessionState.completed,
           session: session,
         );
+        // Invalidate dashboard provider to refresh data
+        _ref.invalidate(dashboardNotifierProvider);
       },
     );
   }
@@ -332,6 +338,7 @@ final focusSessionNotifierProvider =
     resumeSession: resumeSession,
     endSession: endSession,
     getActiveSession: getActiveSession,
+    ref: ref,
   );
 });
 

@@ -5,6 +5,7 @@ import 'package:discipline_os/core/theme/app_typography.dart';
 import 'package:discipline_os/core/theme/theme_extensions.dart';
 import 'package:discipline_os/core/widgets/glass_card.dart';
 import 'package:discipline_os/features/auth/presentation/providers/auth_provider.dart';
+import 'package:discipline_os/features/dashboard/presentation/providers/dashboard_provider.dart';
 import 'package:discipline_os/features/focus_session/domain/entities/focus_session_entity.dart'
     as domain;
 import 'package:discipline_os/features/focus_session/presentation/providers/focus_session_provider.dart';
@@ -136,7 +137,16 @@ class _FocusSessionScreenState extends ConsumerState<FocusSessionScreen> {
             ],
           ),
           IconButton(
-            onPressed: () => context.pop(),
+            onPressed: () {
+              ref.invalidate(dashboardNotifierProvider);
+              final userId = ref.read(currentUserProvider).value?.id;
+              if (userId != null) {
+                ref
+                    .read(dashboardNotifierProvider.notifier)
+                    .loadDashboard(userId);
+              }
+              context.pop();
+            },
             icon: Icon(
               Icons.close,
               color: AppColors.onSurfaceVariant,
@@ -418,6 +428,13 @@ class _FocusSessionScreenState extends ConsumerState<FocusSessionScreen> {
           TextButton(
             onPressed: () {
               ref.read(focusSessionNotifierProvider.notifier).endSession();
+              ref.invalidate(dashboardNotifierProvider);
+              final userId = ref.read(currentUserProvider).value?.id;
+              if (userId != null) {
+                ref
+                    .read(dashboardNotifierProvider.notifier)
+                    .loadDashboard(userId);
+              }
               Navigator.pop(context);
             },
             child: Text(
