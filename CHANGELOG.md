@@ -94,6 +94,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rate limit handling
 - API key validation
 
+### Offline Infrastructure
+
+- Hive initialization with all adapters
+- Local cache layer for all entities
+- Cache Manager with typed access
+- Sync Manager for offline-to-online sync
+- Pending operation queue with retry mechanism
+- Connectivity monitoring with auto-sync
+- Conflict resolution strategy
+
 ### Architecture
 
 - Clean Architecture (domain/data/presentation)
@@ -101,6 +111,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Riverpod for dependency injection
 - GoRouter for navigation
 - Freezed for immutable models (configured)
-- Hive for local storage (configured)
+- Hive for local storage
 - Supabase for backend
 - Gemini API for AI
