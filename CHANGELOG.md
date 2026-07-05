@@ -104,6 +104,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Connectivity monitoring with auto-sync
 - Conflict resolution strategy
 
+### Dashboard Feature
+
+- Dashboard screen with real data from Supabase
+- Discipline Score Aura visualization
+- AI Daily Insight card
+- Momentum tracking
+- Weekly consistency audit
+- Today's goals section
+- Active focus session display
+- Recent reflection summary
+- Empty states for missing data
+- Pull-to-refresh functionality
+- Dashboard repository with local cache fallback
+- Dashboard use cases (Get, Refresh)
+- Dashboard Riverpod providers
+
 ### Architecture
 
 - Clean Architecture (domain/data/presentation)

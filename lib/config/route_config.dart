@@ -2,6 +2,7 @@ import 'package:discipline_os/config/supabase_config.dart';
 import 'package:discipline_os/core/widgets/floating_dock.dart';
 import 'package:discipline_os/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:discipline_os/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:discipline_os/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -43,7 +44,7 @@ class RouteConfig {
           GoRoute(
             path: '/insights',
             pageBuilder: (context, state) => const NoTransitionPage(
-              child: _PlaceholderScreen(title: 'Insights'),
+              child: DashboardScreen(),
             ),
           ),
           GoRoute(
