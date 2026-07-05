@@ -65,3 +65,4 @@ linter:
     always_put_required_named_parameters_first: false
     sort_pub_dependencies: false
     prefer_final_locals: false
+    prefer_constructors_over_static_methods: false

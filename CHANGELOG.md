@@ -79,6 +79,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remote data sources for all tables
 - Supabase query builders
 
+### AI Infrastructure
+
+- Gemini AI Service with retry logic
+- AI Orchestrator for prompt management
+- Prompt Manager with template loading
+- Response Parser for JSON extraction
+- AI Repository with full implementation
+- AI Use Cases (Daily Insight, Weekly Summary, Behavior Analysis, Reflection Analysis, Goal Analysis, Focus Analysis, Recommendations)
+- Riverpod Providers for AI services
+- Prompt templates in markdown format (7 templates)
+- Error handling with retry strategy
+- Timeout handling
+- Rate limit handling
+- API key validation
+
 ### Architecture
 
 - Clean Architecture (domain/data/presentation)
@@ -88,4 +103,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Freezed for immutable models (configured)
 - Hive for local storage (configured)
 - Supabase for backend
-- Gemini API for AI (configured)
+- Gemini API for AI
