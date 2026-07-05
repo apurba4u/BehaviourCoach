@@ -215,6 +215,36 @@ CREATE INDEX idx_user_achievements_user_id ON user_achievements(user_id);
 CREATE INDEX idx_user_achievements_type ON user_achievements(achievement_type);
 
 -- =====================================================
+-- 11. AI COACH CONVERSATIONS TABLE
+-- =====================================================
+CREATE TABLE ai_coach_conversations (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID NOT NULL REFERENCES user_profiles(id) ON DELETE CASCADE,
+  title TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_ai_coach_conversations_user_id ON ai_coach_conversations(user_id);
+
+-- =====================================================
+-- 12. AI COACH MESSAGES TABLE
+-- =====================================================
+CREATE TABLE ai_coach_messages (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  conversation_id UUID NOT NULL REFERENCES ai_coach_conversations(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL REFERENCES user_profiles(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  role TEXT NOT NULL CHECK (role IN ('user', 'assistant')),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes
+CREATE INDEX idx_ai_coach_messages_conversation_id ON ai_coach_messages(conversation_id);
+CREATE INDEX idx_ai_coach_messages_user_id ON ai_coach_messages(user_id);
+
+-- =====================================================
 -- UPDATED_AT TRIGGER FUNCTION
 -- =====================================================
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -257,6 +287,8 @@ ALTER TABLE behavior_timeline ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE app_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_achievements ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ai_coach_conversations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ai_coach_messages ENABLE ROW LEVEL SECURITY;
 
 -- User Profiles RLS
 CREATE POLICY "Users can view own profile"
@@ -398,6 +430,32 @@ CREATE POLICY "Users can view own achievements"
 
 CREATE POLICY "Users can insert own achievements"
   ON user_achievements FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- AI Coach Conversations RLS
+CREATE POLICY "Users can view own conversations"
+  ON ai_coach_conversations FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own conversations"
+  ON ai_coach_conversations FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update own conversations"
+  ON ai_coach_conversations FOR UPDATE
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete own conversations"
+  ON ai_coach_conversations FOR DELETE
+  USING (auth.uid() = user_id);
+
+-- AI Coach Messages RLS
+CREATE POLICY "Users can view own messages"
+  ON ai_coach_messages FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own messages"
+  ON ai_coach_messages FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
 -- =====================================================

@@ -22,6 +22,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Made Active Focus Session card tappable
 - Fixed all integration issues across the application flow
 
+### Database
+
+- Added ai_coach_conversations table to Supabase schema
+- Added ai_coach_messages table to Supabase schema
+- Added RLS policies for AI Coach tables
+- Enabled RLS on all new tables
+
 ### Code Quality
 
 - Resolved all analyzer issues (0 errors, 0 warnings, 0 infos)
